@@ -161,6 +161,7 @@ export default function DashProfile() {
                 },
               }}
             /> */}
+            
             <img src={imageFileUrl || currentUser.profilePicture } alt="Profile" 
             className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] `}/>
         </div>
@@ -173,8 +174,15 @@ export default function DashProfile() {
         </Button>
         </form>
         <div className='text-red-500 flex justify-between mt-5'>
-            <span onClick={()=>setShowModal(true)} className='cursor-pointer'>Delete Account</span>
-            <span onClick={handleSignout}  className='cursor-pointer'>Sign Out</span>
+            {/* <span onClick={()=>setShowModal(true)} className='cursor-pointer'>Delete Account</span> */}
+            <Button  onClick={()=>setShowModal(true)} gradientDuoTone='purpleToBlue' outline >
+              Delete Account
+            </Button>
+            {/* <span onClick={handleSignout}  className='cursor-pointer'>Sign Out</span> */}
+            <Button onClick={handleSignout} gradientDuoTone='purpleToBlue' outline >
+              Sign Out
+            </Button>
+           
         </div>
         {updateUserSuccess && (
         <Alert color='success' className='mt-5'>
