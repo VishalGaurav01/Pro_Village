@@ -5,7 +5,7 @@ export const create = async (req, res, next) => {
     // console.log(
     //     'AArul'
     // );
-  if (!req.user.isAdmin) {
+  if (!req.user) {
     return next(errorHandler(403, 'You are not allowed to create a post'));
   }
   if (!req.body.title || !req.body.content) {

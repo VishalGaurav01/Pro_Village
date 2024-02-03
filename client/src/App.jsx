@@ -21,7 +21,7 @@ export default function Main() {
         <Route element={<PrivateRoute/>}>
         <Route path="/Dashboard" element={<Dashboard />}/>
         </Route>
-        <Route element={<OnlyAdminPrivateRoute/>}>
+        <Route element={<PrivateRoute/>}>
         <Route path="/Create-post" element={<CreatePost />}/>
         </Route>
         <Route path="/Signup" element={<Signup />}/>
