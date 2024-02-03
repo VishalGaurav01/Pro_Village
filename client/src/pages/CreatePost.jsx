@@ -21,7 +21,7 @@ export default function CreatePost() {
             </div>
             <div className='flex flex-col gap-4 sm:flex-row justify-between'>
             <TextInput
-            type='location'
+            type='text'
             placeholder='City'
             required id='city'
             className="flex-1"/>
@@ -50,11 +50,11 @@ export default function CreatePost() {
   </div> */}
   {/* <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"/>
 </div> */}
-            <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
+          <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
           <FileInput
             type='file'
             accept='image/*'/>
-             <Button
+            <Button
             type='button'
             gradientDuoTone='purpleToBlue'
             size='sm'
@@ -72,6 +72,6 @@ export default function CreatePost() {
         <Button type='submit' gradientDuoTone='purpleToPink'>
           Publish
         </Button>
-            </form>
+          </form>
           </div>
 )}
