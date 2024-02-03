@@ -10,10 +10,29 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    aadhar: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+    ifsc: {
+      type: String,
+      required: true,
+      unique:true,
+    },
+    pinCode: {
+      type: Number,
+      required: true,
+    },
+    //city
+    city: {
+      type: String,
+      required: true,
+    },
+    //name
     title: {
       type: String,
       required: true,
-      unique: true,
     },
     image: {
       type: String,

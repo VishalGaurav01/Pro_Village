@@ -6,15 +6,17 @@ import 'react-quill/dist/quill.snow.css';
 import {CircularProgressbar} from 'react-circular-progressbar';
 import {getStorage , ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 import 'react-circular-progressbar/dist/styles.css';
-
+import {useNavigate} from 'react-router-dom';
 
 export default function CreatePost() 
 {
+  const navigate =useNavigate();
   const [imageUploadProgress,setimageUploadProgress] =useState(null);
   const [imageUploadError,setimageUploadError] =useState(null);
   const[file,setfile] = useState(null);
   const[formData,setFormData]=useState({}); 
-
+  const [publishError, setPublishError] = useState(null);
+  // console.log(formData);
   const handleUpdloadImage = async () => {
     try {
       if (!file) {
@@ -51,16 +53,47 @@ export default function CreatePost()
       console.log(error);
     }
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('/api/post/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPublishError(data.message);
+        return;
+      }
+
+      if (res.ok) {
+        setPublishError(null);
+        navigate(`/post/${data.ifsc}`);
+      }
+    } catch (error) {
+      setPublishError('Something went wrong');
+    }
+  };
     return (
         <div className='p-3 max-w-3xl mx-auto min-h-screen'>
           <h1 className='text-center text-3xl my-7 font-semibold'>Create a Card</h1>
-          <form className='flex flex-col gap-4' >
+          <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
           <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput
             type='text'
             placeholder='Name'
-            className="flex-1"/>
-            <Select>
+            className="flex-1"
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
+            />
+            <Select  onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
+            >
                 <option value="uncategorized">Select a Category</option>
                 <option value="electrician">Electrician</option>
                 <option value="plumber">Plumber</option>
@@ -73,23 +106,23 @@ export default function CreatePost()
             type='text'
             placeholder='City'
             required id='city'
-            className="flex-1"/>
+            className="flex-1"  onChange={(e) => setFormData({...formData, city: e.target.value})}/>
             <TextInput
             type='number'
             placeholder='Pin Code'
-            className="flex-1"/> 
+            className="flex-1" onChange={(e) => setFormData({...formData, pinCode: e.target.value})}/> 
             </div>
             <div className='flex flex-col gap-4 sm:flex-row justify-between'>
             <TextInput
             type='number'
             placeholder='Aadhar Number'
-            className="flex-1"/> 
+            className="flex-1" onChange={(e) => setFormData({...formData, aadhar: e.target.value})} /> 
             {/* <div inline-datepicker data-date="02/25/2022"></div> */}
             {/* <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block focus:ring-blue-500 focus:border-blue-500  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"/> */}
             <TextInput
-            type='number'
+            type='text'
             placeholder='IFSC Code'
-            className="flex-1"/> 
+            className="flex-1" onChange={(e) => setFormData({...formData, ifsc: e.target.value})}/> 
             </div>
             {/* <div class="relative max-w-sm">
   <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -136,14 +169,19 @@ export default function CreatePost()
           theme='snow'
           placeholder='Work Experience'
           className='h-72 mb-12'
-        //   required
-        //   onChange={(value) => {
-        //     setFormData({ ...formData, content: value });
-        //   }}
+          required
+          onChange={(value) => {
+            setFormData({ ...formData, content: value });
+          }}
         />
         <Button type='submit' gradientDuoTone='purpleToPink'>
           Publish
         </Button>
+        {publishError && (
+          <Alert className='mt-2' color='failure'>
+            {publishError}
+          </Alert>
+        )}
           </form>
           </div>
 )}
