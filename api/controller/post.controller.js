@@ -36,6 +36,10 @@ export const getposts = async (req, res, next) => {
       ...(req.query.category && { category: req.query.category }),
       ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.postId && { _id: req.query.postId }),
+      ...(req.query.ifsc && { aadhar: req.query.ifsc }),
+      ...(req.query.city && { _id: req.query.city }),
+      ...(req.query.pinCode && { _id: req.query.pinCode }),
+
       ...(req.query.searchTerm && {
         $or: [
           { title: { $regex: req.query.searchTerm, $options: 'i' } },
@@ -78,6 +82,32 @@ export const deletepost = async (req, res, next) => {
   try {
     await Post.findByIdAndDelete(req.params.postId);
     res.status(200).json('The post has been deleted');
+  } catch (error) {
+    next(error);
+  }
+};
+export const updatepost = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(errorHandler(403, 'You are not allowed to update this post'));
+  }
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.postId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          category: req.body.category,
+          image: req.body.image,
+          city:req.body.city,
+          pinCode:req.body.pinCode,
+          ifsc:req.body.ifsc,
+          aadhar:req.body.aadhar,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedPost);
   } catch (error) {
     next(error);
   }
