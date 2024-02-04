@@ -77,7 +77,7 @@ export default function DashSidebar() {
                 </Sidebar.Item>
               </Link>
             )}
-           {/*  {currentUser.isAdmin && (
+            {currentUser.isAdmin && (
               <>
                 <Link to='/dashboard?tab=users'>
                   <Sidebar.Item
@@ -88,7 +88,8 @@ export default function DashSidebar() {
                     Users
                   </Sidebar.Item>
                 </Link>
-                <Link to='/dashboard?tab=comments'>
+                
+                 <Link to='/dashboard?tab=comments'>
                   <Sidebar.Item
                     active={tab === 'comments'}
                     icon={HiAnnotation}
@@ -98,7 +99,7 @@ export default function DashSidebar() {
                   </Sidebar.Item>
                 </Link>
               </>
-            )} */}
+            )}
             <Sidebar.Item
               icon={HiArrowSmRight}
               className='cursor-pointer'
