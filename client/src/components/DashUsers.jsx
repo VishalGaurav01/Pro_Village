@@ -13,7 +13,7 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`/api/user/getusers`);
+        const res = await fetch('/api/user/getusers');
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -33,7 +33,7 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(`/api/user/getusers?startIndex=${startIndex}`);
+      const res = await fetch(`/api/user/getusers/?startIndex=${startIndex}`);
       const data = await res.json();
       if (res.ok) {
         setUsers((prev) => [...prev, ...data.users]);
@@ -74,6 +74,7 @@ export default function DashUsers() {
               <Table.HeadCell>Username</Table.HeadCell>
               <Table.HeadCell>Email</Table.HeadCell>
               <Table.HeadCell>Service Provider</Table.HeadCell>
+              <Table.HeadCell>Admin </Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
             </Table.Head>
             {users.map((user) => (
@@ -91,6 +92,13 @@ export default function DashUsers() {
                   </Table.Cell>
                   <Table.Cell>{user.username}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
+                  <Table.Cell >
+                    {user.isProvider ? (
+                      <FaCheck className='text-green-500 mx-auto'  />
+                    ) : (
+                      <FaTimes className='text-red-500 mx-auto' />
+                    )}
+                  </Table.Cell>
                   <Table.Cell >
                     {user.isAdmin ? (
                       <FaCheck className='text-green-500 mx-auto'  />

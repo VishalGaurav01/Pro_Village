@@ -1,5 +1,6 @@
 import Post from '../models/post.model.js';
 import { errorHandler } from '../utils/error.js';
+import User from '../models/user.model.js';
 
 export const create = async (req, res, next) => {
   if (!req.user) {
@@ -20,7 +21,15 @@ export const create = async (req, res, next) => {
   });
   try {
     const savedPost = await newPost.save();
-    res.status(201).json(savedPost);
+
+    const user = await User.findOne({ _id: req.user.id });
+    if (user) {
+      user.isProvider = true; 
+      await user.save(); 
+    // console.log(user.isProvider);
+    }
+    res.status(201).json(savedPost); 
+
   } catch (error) {
     next(error);
   }
@@ -87,7 +96,7 @@ export const deletepost = async (req, res, next) => {
   }
 };
 export const updatepost = async (req, res, next) => {
-  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+  if (!req.user.isProvider || req.user.id !== req.params.userId) {
     return next(errorHandler(403, 'You are not allowed to update this post'));
   }
   try {

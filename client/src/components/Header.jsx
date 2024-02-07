@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, Navbar, NavbarToggle, TextInput } from 'flowbite-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link , useLocation } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai';
 import {FaMoon , FaSun} from 'react-icons/fa'
@@ -12,6 +12,7 @@ export default function Header() {
     const path = useLocation().pathname;
     const Dispatch = useDispatch();
     const {currentUser} = useSelector(state =>state.user)
+    const [userPosts, setUserPosts] = useState('');
     const {theme} = useSelector((state)=>state.theme);
 
     const handleSignout = async () => {
@@ -108,25 +109,27 @@ export default function Header() {
             </Button>
           </Link>
         )}
-
-          {/* <Link to='/signup'>
-            <Button gradientDuoTone='purpleToBlue' outline>
-              Sign Up
-            </Button>
-          </Link> */}
           <NavbarToggle/>
           </div>
-          <Navbar.Collapse>
+          {/* {userPosts.map((post) => ( */}
+            <Navbar.Collapse>
             <Navbar.Link active={path==="/"} as={'div'} >
             <Link to='/'>Home</Link>
             </Navbar.Link>
             <Navbar.Link active={path==="/About"} as={'div'} >
             <Link to='/About'>About</Link>
             </Navbar.Link>
-            <Navbar.Link active={path==="/Create-post"} as={'div'}  >
-            <Link to='/Create-post'>Service Provider</Link>
-            </Navbar.Link>
+           
+            {currentUser?.isProvider ? (
+  <Navbar.Link active={path === `/updatepost/${userPosts}`} as={'div'}>
+    <Link to={`/updatepost/${userPosts}`}>Update Profile</Link>
+  </Navbar.Link>
+) : (
+  <Navbar.Link active={path === '/Create-post'} as={'div'}>
+    <Link to='/Create-post'>Service Profile</Link>
+  </Navbar.Link>
+)}
          </Navbar.Collapse>
-      </Navbar>
+          </Navbar>
   )
 }

@@ -1,7 +1,9 @@
 import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import CallToAction from '../components/CalltoAction';
+// import { FaDollerSign } from 'react-icons/fa';
+// import { FaRupeeSign } from 'react-icons/fa';
+// import CallToAction from '../components/CalltoAction';
 // import CommentSection from '../components/CommentSection';
 // import PostCard from '../components/PostCard';
 
@@ -60,7 +62,7 @@ export default function PostPage() {
   return (
     <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
       <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
-        {post && post.title}
+        Service Profile 
       </h1>
       <Link
         to={`/search?category=${post && post.category}`}
@@ -92,26 +94,27 @@ export default function PostPage() {
       ></div> *
         </div>
       </div>  */}
-      <div className='flex flex-col mt-4 sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center'>
+      <div className='flex flex-col mt-4 sm:flex-row p-3 border border-teal-500 justify-center items-center  text-center'>
         <div className="flex-1 justify-center flex flex-col">
-            <h2 className='text-2xl'>
+        <h2 className='text-2xl text-left ml-20 pl-20' >
+            Name: {post && post.title}
+            </h2>
+            <h2 className='text-2xl text-left ml-20 pl-20' >
             City: {post && post.city}
             </h2>
-            <h2 className='text-2xl'>
+            <h2 className='text-2xl text-left ml-20 pl-20'>
             Price: 300 
             </h2>
-            <h2 className='text-2xl'>
+            <h2 className='text-2xl text-left ml-20 pl-20'>
             Pincode: {post && post.pinCode}
             </h2>
-            <h2 className='text-2xl'>
+            <h2 className='text-2xl text-left ml-20 pl-20'>
             Phone No : {post && post.aadhar}
             </h2>
-            <p className='text-gray-500 my-2'>
             <div
         className='p-3 max-w-2xl mx-auto w-full post-content'
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
-            </p>
             <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
                 <a href="https://www.100jsprojects.com" target='_blank' rel='noopener noreferrer'>
                     Send Request
@@ -133,9 +136,9 @@ export default function PostPage() {
         className='p-3 max-w-2xl mx-auto w-full post-content'
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div> */}
-      <div className='max-w-4xl mx-auto w-full'>
+      {/* <div className='max-w-4xl mx-auto w-full'>
         <CallToAction />
-      </div>
+      </div> */}
       {/* <CommentSection postId={post._id} /> */}
 
       {/* <div className='flex flex-col justify-center items-center mb-5'>

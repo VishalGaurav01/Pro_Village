@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
+    isProvider:{
+        type:Boolean,
+        default:false,
+    },
 },{timestamps:true} // to reduce time for users
 );
 

@@ -14,7 +14,7 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
+        const res = await fetch('/api/post/getposts');
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
@@ -35,7 +35,7 @@ export default function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+        `/api/post/getposts/?startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -70,14 +70,14 @@ export default function DashPosts() {
       console.log(error.message);
     }
   };
-
+ 
   return (
     <div className='table-auto overflow-x-scroll  md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table hoverable className='shadow-md'>
             <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
+              <Table.HeadCell>Date updated </Table.HeadCell>
               <Table.HeadCell>Post Image</Table.HeadCell>
               <Table.HeadCell>Post Name</Table.HeadCell>
               <Table.HeadCell>Category</Table.HeadCell>
