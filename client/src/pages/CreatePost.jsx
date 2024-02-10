@@ -7,6 +7,7 @@ import {CircularProgressbar} from 'react-circular-progressbar';
 import {getStorage , ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 import 'react-circular-progressbar/dist/styles.css';
 import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function CreatePost() 
 {
@@ -14,6 +15,7 @@ export default function CreatePost()
   const [imageUploadProgress,setimageUploadProgress] =useState(null);
   const [imageUploadError,setimageUploadError] =useState(null);
   const[file,setfile] = useState(null);
+  const { currentUser } = useSelector((state) => state.user);
   const[formData,setFormData]=useState({}); 
   const [publishError, setPublishError] = useState(null);
   // console.log(formData);
@@ -78,8 +80,10 @@ export default function CreatePost()
     }
   };
     return (
-        <div className='p-3 max-w-3xl mx-auto min-h-screen'>
-          <h1 className='text-center text-3xl my-7 font-semibold'>Application Form</h1>
+<div className='p-3 max-w-3xl mx-auto min-h-screen'>
+    {(!currentUser.isProvider)?
+          (<>
+            <h1 className='text-center text-3xl my-7 font-semibold'>Application Form</h1>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
           <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput
@@ -183,5 +187,7 @@ export default function CreatePost()
           </Alert>
         )}
           </form>
-          </div>
-)}
+          </>)
+          :
+          (<p>You already have created a Profile</p>)}
+</div>)}
