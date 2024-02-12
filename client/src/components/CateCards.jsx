@@ -12,7 +12,7 @@ export default function PostCard({url , type}) {
       </Link>
       <div className='p-3 flex flex-col gap-2'>
             <div className='p-3 flex flex-col gap-2'>
-                <p className='text-lg justify-center text-center font-semibold line-clamp-2'> {type}</p>
+                <h1 className='text-lg justify-center text-center font-semibold line-clamp-2'> {type}</h1>
             {/* <div className='mx-auto my-auto flex flex-col'> */}
             {/* <h3 className='text-lg font-semibold line-clamp-2'>Price: 300</h3> */}
               <div className=' mx-auto mt-3 flex flex-row'>

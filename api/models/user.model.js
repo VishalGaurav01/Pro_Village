@@ -27,6 +27,14 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
+    notification:{
+        type:Array,
+        default:[],
+    },
+    seennotification:{
+        type:Array,
+        default:[],
+    }
 },{timestamps:true} // to reduce time for users
 );
 

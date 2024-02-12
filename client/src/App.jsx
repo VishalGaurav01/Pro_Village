@@ -12,6 +12,7 @@ import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute'
 import CreatePost from './pages/CreatePost'
 import UpdatePost from './pages/UpdatePost'
 import PostPage from './pages/PostPage'
+import Notice from './pages/Notice'
 
 export default function Main() {
   return (
@@ -26,6 +27,7 @@ export default function Main() {
         <Route element={<PrivateRoute/>}>
         <Route path="/Create-post" element={<CreatePost />}/>
         <Route path="/updatepost/:postId" element={<UpdatePost />}/>
+        <Route path="/notification" element={<Notice/>}/>
         </Route>
         <Route path="/Signup" element={<Signup />}/>
         <Route path="/Signin" element={<Signin />}/>

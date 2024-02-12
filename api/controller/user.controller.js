@@ -117,3 +117,67 @@ export const updateUser = async (req, res, next) => {
       next(error);
     }
   };
+
+  export const getnotice =async(req,res,next)=>{
+    try{
+      const user = await User.findOne({_id:req.body.userId})
+      const seennotification = user.seennotification;
+      const notification = user.notification;
+      seennotification.push(...notification)
+      user.notification=[]
+      user.seennotification=notification
+      const updateduser= await user.save()
+      req.status(200).send({
+        success:true,
+        message:'all notification marked as seen',
+        seen:updateduser,
+      }) 
+    }catch(error){
+      next(error);
+    }
+  };
+
+  // export const sendnotice =async(req,res,next)=>{
+  //   try {
+  //     const user = await User.findOne({ isProvider: true });
+  //     if (!user) {
+  //         return res.status(404).json({ success: false, message: 'Admin not found' });
+  //     }
+
+  //     const notification = user.notification;
+  //     notification.push({
+  //         type: 'request-service',
+  //         message: `${req.user.id} has applied for services`, // Assuming req.user.id is the user ID
+  //     });
+
+  //     await User.findByIdAndUpdate(user._id, { notification });
+
+  //     res.status(201).json({
+  //         success: true,
+  //         message: 'Notification Sent Successfully'
+  //     });
+  // } catch (error) {
+  //     next(error); // Pass error to the error handling middleware
+  // }
+  // };
+  export const sendnotice = async (req, res) => {
+    const {userId,currentUse} = req.body;
+    try {
+      // Find the user by userId
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      // Add the request details to the user's document
+      user.notification.push( currentUse + " Send notification" );
+      
+      // Save the updated user document
+      await user.save();
+  
+      res.json({ message: 'Request sent successfully' });
+    } catch (error) {
+      console.error('Error sending request:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  };

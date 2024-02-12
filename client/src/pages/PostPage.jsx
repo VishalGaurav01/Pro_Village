@@ -6,13 +6,40 @@ import { Link, useParams } from 'react-router-dom';
 // import CallToAction from '../components/CalltoAction';
 // import CommentSection from '../components/CommentSection';
 import PostCard from '../components/PostCard';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+
 
 export default function PostPage() {
   const { postSlug } = useParams();
+  const { currentUser } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState(null);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    // console.log(currentUser.id);
+  if (!currentUser || !currentUser.username  || !post.userId) {
+    console.error('User data is missing or invalid');
+    return;
+  }
+    // await axios.post('/api/user/apply-notify', { userId : post.userId });
+    // alert('Request sent successfully');
+    const res = await fetch('/api/user/apply-notify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({userId:post.userId,currentUse:currentUser.username}),
+    });
+
+} catch (error) {
+    console.error('Error sending request:', error);
+  }
+};
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -73,28 +100,7 @@ export default function PostPage() {
           {post && post.category}
         </Button>
       </Link>
-      {/* <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
-      <img
-        src={post && post.image}
-        alt={post && post.title}
-        className='mt-10 p-3 max-h-[400px] w-full object-cover'
-      />
-        <div >
-        <h3 className='text-1xl mt-6 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
-        City: {post && post.city}
-      </h3>
-      <h3 className='text-1xl mt-6 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
-       Aadhar No: {post && post.aadhar}
-      </h3>
-      <h3 className='text-1xl mt-6 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
-       Pincode : {post && post.pinCode}
-      </h3>
-        {/* <div
-        className='p-3 max-w-2xl mx-auto w-full post-content'
-        dangerouslySetInnerHTML={{ __html: post && post.content }}
-      ></div> *
-        </div>
-      </div>  */}
+      
       <div className='flex flex-col mt-4 sm:flex-row p-3 border border-teal-500 justify-center items-center  text-center'>
         <div className="flex-1 justify-center flex flex-col">
         <h2 className='text-2xl text-left ml-20 pl-20' >
@@ -113,10 +119,12 @@ export default function PostPage() {
         className='p-3 max-w-2xl mx-auto w-full post-content'
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
-            <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
-                <a href="https://www.100jsprojects.com" target='_blank' rel='noopener noreferrer'>
+            <Button onClick={
+              handleSubmit
+            } gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
+                
                     Send Request
-                </a>
+                
             </Button>
         </div>
         <div className="p-7 flex-1">
