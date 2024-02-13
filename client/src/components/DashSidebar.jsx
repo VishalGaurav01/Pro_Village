@@ -59,25 +59,36 @@ export default function DashSidebar() {
               <Sidebar.Item
                 active={tab === 'profile'}
                 icon={HiUser}
-                label={currentUser.isAdmin ? 'Admin' : 'User'}
+                label={currentUser.isAdmin ? 'Admin' : currentUser.isProvider?'Service':'User'}
                 labelColor='dark'
                 as='div'
               >
                 Profile
               </Sidebar.Item>
             </Link>
-            {currentUser.isAdmin && (
+            {(currentUser.isAdmin) && (
               <Link to='/dashboard?tab=posts'>
                 <Sidebar.Item
                   active={tab === 'posts'}
                   icon={HiDocumentText}
                   as='div'
                 >
-                  Posts
+                  Service Profiles
                 </Sidebar.Item>
               </Link>
             )}
-            {currentUser.isAdmin && (
+            {(currentUser.isProvider) && (
+              <Link to='/dashboard?tab=postspro'>
+                <Sidebar.Item
+                  active={tab === 'postspro'}
+                  icon={HiDocumentText}
+                  as='div'
+                >
+                  Your Profile
+                </Sidebar.Item>
+              </Link>
+            )}
+            {(currentUser.isAdmin )&& (
               <>
                 <Link to='/dashboard?tab=users'>
                   <Sidebar.Item
@@ -89,7 +100,7 @@ export default function DashSidebar() {
                   </Sidebar.Item>
                 </Link>
                 
-                 <Link to='/dashboard?tab=comments'>
+                 {/* <Link to='/dashboard?tab=comments'>
                   <Sidebar.Item
                     active={tab === 'comments'}
                     icon={HiAnnotation}
@@ -97,7 +108,7 @@ export default function DashSidebar() {
                   >
                     Comments
                   </Sidebar.Item>
-                </Link>
+                </Link> */}
               </>
             )}
             <Sidebar.Item

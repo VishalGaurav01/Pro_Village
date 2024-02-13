@@ -16,6 +16,7 @@ export default function CreatePost()
   const [imageUploadError,setimageUploadError] =useState(null);
   const[file,setfile] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
+  const [userPosts, setUserPosts] = useState([]);
   const[formData,setFormData]=useState({}); 
   const [publishError, setPublishError] = useState(null);
   // console.log(formData);
@@ -81,7 +82,7 @@ export default function CreatePost()
   };
     return (
 <div className='p-3 max-w-3xl mx-auto min-h-screen'>
-    {(!currentUser.isProvider)?
+    {(!currentUser.isProvider )?
           (<>
             <h1 className='text-center text-3xl my-7 font-semibold'>Application Form</h1>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
@@ -189,5 +190,7 @@ export default function CreatePost()
           </form>
           </>)
           :
-          (<p>You already have created a Profile</p>)}
+          (<Alert className='mt-2' color='failure'>
+          You already have created a Profile
+          </Alert>)}
 </div>)}

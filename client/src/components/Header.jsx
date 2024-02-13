@@ -1,6 +1,6 @@
 import { Avatar, Button, Dropdown, Navbar, NavbarToggle, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
-import { Link , useLocation } from 'react-router-dom'
+import { Link , Navigate, useLocation } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai';
 import {FaMoon , FaSun , FaBell} from 'react-icons/fa'
 import {useSelector , useDispatch} from 'react-redux'
@@ -124,16 +124,9 @@ export default function Header() {
             <Navbar.Link active={path==="/About"} as={'div'} >
             <Link to='/About'>About</Link>
             </Navbar.Link>
-           
-            {currentUser?.isProvider ? (
-  <Navbar.Link active={path === `/updatepost/${userPosts}`} as={'div'}>
-    <Link to={`/updatepost/${userPosts}`}>Update Profile</Link>
-  </Navbar.Link>
-) : (
   <Navbar.Link active={path === '/Create-post'} as={'div'}>
-    <Link to='/Create-post'>Service Profile</Link>
+    <Link to='/Create-post'>Apply Service</Link>
   </Navbar.Link>
-)}
          </Navbar.Collapse>
           </Navbar>
   )
