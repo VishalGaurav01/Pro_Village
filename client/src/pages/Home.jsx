@@ -79,12 +79,12 @@ export default function Home() {
     <div className='flex flex-col gap-6'>
       <h2 className='text-2xl font-semibold text-center hover:text-teal-500'>Service Profiles</h2>
       <div className='flex flex-wrap mt-2 gap-4 justify-center'>
-      <CateCards url={"../../Photos_coro/plum_img.jpg"} type={"Plumbers"} />
-      <CateCards url={"../../Photos_coro/elec_img.jpg"} type={"Electricians"} />
-      <CateCards url={"../../Photos_coro/mech_img.jpg"} type={"Mechanics"} />
-      <CateCards url={"../../Photos_coro/cl_img.jpg"} type={"Cleaners"} />
-      <CateCards url={"../../Photos_coro/car_img.jpg"} type={"Carpenters"} />
-      <CateCards url={"../../Photos_coro/par_img.jpg"} type={"Beauticians"} />
+      <CateCards url={"../../Photos_coro/plum_img.jpg"} type={"Plumber"} />
+      <CateCards url={"../../Photos_coro/elec_img.jpg"} type={"Electrician"} />
+      <CateCards url={"../../Photos_coro/mech_img.jpg"} type={"Mechanic"} />
+      <CateCards url={"../../Photos_coro/cl_img.jpg"} type={"Cleaner"} />
+      <CateCards url={"../../Photos_coro/car_img.jpg"} type={"Carpenter"} />
+      <CateCards url={"../../Photos_coro/par_img.jpg"} type={"Beautician"} />
       </div>
       <Link
         to={'/search'}

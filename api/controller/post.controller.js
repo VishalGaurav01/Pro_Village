@@ -22,12 +22,12 @@ export const create = async (req, res, next) => {
   try {
     const savedPost = await newPost.save();
 
-    const user = await User.findOne({ _id: req.user.id });
-    if (user) {
-      user.isProvider = true; 
-      await user.save(); 
+    // const user = await User.findOne({ _id: req.user.id });
+    // if (user) {
+    //   user.isProvider = true; 
+    //   await user.save(); 
     // console.log(user.isProvider);
-    }
+    // }
     res.status(201).json(savedPost); 
 
   } catch (error) {
@@ -38,7 +38,7 @@ export const create = async (req, res, next) => {
 export const getposts = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 9;
+    const limit = parseInt(req.query.limit) || 8;
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const posts = await Post.find({
       ...(req.query.userId && { userId: req.query.userId }),
@@ -51,8 +51,10 @@ export const getposts = async (req, res, next) => {
 
       ...(req.query.searchTerm && {
         $or: [
+          { city: { $regex: req.query.searchTerm, $options: 'i' } },
+          // { content: { $regex: req.query.searchTerm, $options: 'i' } },
+          { category: { $regex: req.query.searchTerm, $options: 'i' } },
           { title: { $regex: req.query.searchTerm, $options: 'i' } },
-          { content: { $regex: req.query.searchTerm, $options: 'i' } },
         ],
       }),
     })

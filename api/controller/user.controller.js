@@ -16,11 +16,11 @@ export const updateUser = async (req, res, next) => {
       req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
     if (req.body.username) {
-      if (req.body.username.length < 7 || req.body.username.length > 20) {
-        return next(
-          errorHandler(400, 'Username must be between 7 and 20 characters')
-        );
-      }
+      // if (req.body.username.length < 7 || req.body.username.length > 20) {
+      //   return next(
+      //     errorHandler(400, 'Username must be between 7 and 20 characters')
+      //   );
+      // }
       if (req.body.username.includes(' ')) {
         return next(errorHandler(400, 'Username cannot contain spaces'));
       }
@@ -34,6 +34,10 @@ export const updateUser = async (req, res, next) => {
       }
     }
     try {
+      if (req.body.isProvider !== undefined) {
+        // Update isProvider field if included in the request body
+        req.body.isProvider = true; // Assuming the value is set to true when submitting the form
+      }  
       const updatedUser = await User.findByIdAndUpdate(
         req.params.userId,
         {
@@ -42,6 +46,7 @@ export const updateUser = async (req, res, next) => {
             email: req.body.email,
             profilePicture: req.body.profilePicture,
             password: req.body.password,
+            isProvider: req.body.isProvider,
             // isAdmin:true,
             // isProvider:false,
           },

@@ -13,6 +13,7 @@ import CreatePost from './pages/CreatePost'
 import UpdatePost from './pages/UpdatePost'
 import PostPage from './pages/PostPage'
 import Notice from './pages/Notice'
+import Search from './pages/Search'
 
 export default function Main() {
   return (
@@ -31,6 +32,7 @@ export default function Main() {
         </Route>
         <Route path="/Signup" element={<Signup />}/>
         <Route path="/Signin" element={<Signin />}/>
+        <Route path="/Search" element={<Search />}/>
         <Route path="/Projects" element={<Projects />}/>
         <Route path='/post/:postSlug' element={<PostPage/>}/>
       </Routes>

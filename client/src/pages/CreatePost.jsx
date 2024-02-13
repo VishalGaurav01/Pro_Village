@@ -1,5 +1,5 @@
 import { Button, FileInput, Select,TextInput, Alert } from "flowbite-react";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import ReactQuill from 'react-quill';
 import { app } from '../firebase';
 import 'react-quill/dist/quill.snow.css';
@@ -17,6 +17,26 @@ export default function CreatePost()
   const[file,setfile] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchUserPosts = async () => {
+      try {
+        const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message);
+        }
+        setUserPosts(data.posts);
+      } catch (error) {
+        console.error('Error fetching user posts:', error);
+      }
+    };
+
+    fetchUserPosts();
+  }, [currentUser.id]);
+
+
+
   const[formData,setFormData]=useState({}); 
   const [publishError, setPublishError] = useState(null);
   // console.log(formData);
@@ -59,6 +79,22 @@ export default function CreatePost()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const updatedCurrentUser = { ...currentUser, isProvider: true };
+
+    // Make the API call to update the currentUser object
+    const updateRes = await fetch(`/api/user/update/${currentUser._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedCurrentUser),
+    });
+    const updateData = await updateRes.json();
+
+    if (!updateRes.ok) {
+      throw new Error(updateData.message);
+    }
+    
       const res = await fetch('/api/post/create', {
         method: 'POST',
         headers: {
@@ -82,7 +118,7 @@ export default function CreatePost()
   };
     return (
 <div className='p-3 max-w-3xl mx-auto min-h-screen'>
-    {(!currentUser.isProvider )?
+    {(!currentUser.isProvider || currentUser.isAdmin || userPosts.length==0)?
           (<>
             <h1 className='text-center text-3xl my-7 font-semibold'>Application Form</h1>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
@@ -104,6 +140,8 @@ export default function CreatePost()
                 <option value="plumber">Plumber</option>
                 <option value="cleaner">Cleaner</option>
                 <option value="mechanic">Mechanic</option>
+                <option value='carpenter'>Carpenter</option>
+                <option value='beauticians'>Beauticians</option>
             </Select>
             </div>
             <div className='flex flex-col gap-4 sm:flex-row justify-between'>
@@ -191,6 +229,6 @@ export default function CreatePost()
           </>)
           :
           (<Alert className='mt-2' color='failure'>
-          You already have created a Profile
+          You have already created a Profile
           </Alert>)}
 </div>)}
