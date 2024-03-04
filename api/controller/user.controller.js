@@ -126,8 +126,14 @@ export const updateUser = async (req, res, next) => {
   export const getnotice =async(req,res,next)=>{
     try{
       const user = await User.findOne({_id:req.body.userId})
-      const seennotification = user.seennotification;
-      const notification = user.notification;
+      if (!user) {
+        return res.status(404).send({
+            success: false,
+            message: 'User not found'
+        });
+    }    
+      const seennotification = user.seennotification || [];
+      const notification = user.notification || [];
       seennotification.push(...notification)
       user.notification=[]
       user.seennotification=notification
@@ -135,7 +141,7 @@ export const updateUser = async (req, res, next) => {
       req.status(200).send({
         success:true,
         message:'all notification marked as seen',
-        seen:updateduser,
+        data:updateduser,
       }) 
     }catch(error){
       next(error);
@@ -166,7 +172,7 @@ export const updateUser = async (req, res, next) => {
   // }
   // };
   export const sendnotice = async (req, res) => {
-    const {userId,currentUse} = req.body;
+    const {userId,currentUse,sendId,fore,datetime} = req.body;
     try {
       // Find the user by userId
       const user = await User.findById(userId);
@@ -175,7 +181,17 @@ export const updateUser = async (req, res, next) => {
         return res.status(404).json({ error: 'User not found' });
       }
       // Add the request details to the user's document
-      user.notification.push( currentUse + " Send notification" );
+      user.notification.push({
+        type: "Apply for service", 
+        message: `${currentUse} sent a request for service of ${fore}`,
+        data: {
+          datetime:datetime,
+          userId:sendId,
+          name:currentUse,
+          onClickPath: "/user/pend",
+          fore:fore,
+        },
+      });
       
       // Save the updated user document
       await user.save();

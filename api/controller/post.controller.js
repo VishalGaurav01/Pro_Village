@@ -32,7 +32,7 @@ export const create = async (req, res, next) => {
 
   } catch (error) {
     next(error);
-  }
+  } 
 };
 
 export const getposts = async (req, res, next) => {

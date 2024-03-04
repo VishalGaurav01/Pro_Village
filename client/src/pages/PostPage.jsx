@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 // import CommentSection from '../components/CommentSection';
 import PostCard from '../components/PostCard';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 export default function PostPage() {
@@ -28,12 +28,21 @@ const handleSubmit = async (e) => {
   }
     // await axios.post('/api/user/apply-notify', { userId : post.userId });
     // alert('Request sent successfully');
+    const currentDate = new Date();
+    const dateTimeString = currentDate.toLocaleString('en-IN');
     const res = await fetch('/api/user/apply-notify', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({userId:post.userId,currentUse:currentUser.username}),
+      body: JSON.stringify(
+        {
+          userId:post.userId,
+          fore:post.category,
+          currentUse:currentUser.username,
+          sendId:currentUser._id,
+          datetime:dateTimeString,
+        }),
     });
 
 } catch (error) {
