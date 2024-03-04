@@ -39,7 +39,7 @@ export default function DashProviderPosts() {
       const data = await res.json();
       if (res.ok) {
         setUserPosts((prev) => [...prev, ...data.posts]);
-        if (data.posts.length < 9) {
+        if (data.posts.length < 10) {
           setShowMore(false);
         }
       }

@@ -77,7 +77,7 @@ export default function Home() {
       <div className='max-w-9xl mx-auto p-3 flex flex-col gap-8 py-7 justify-center items-center'>
   {posts && posts.length > 0 && (
     <div className='flex flex-col gap-6'>
-      <h2 className='text-2xl font-semibold text-center hover:text-teal-500'>Service Profiles</h2>
+      <h2 className='text-2xl font-semibold text-center hover:text-teal-500'>What are you looking for?</h2>
       <div className='flex flex-wrap mt-2 gap-4 justify-center'>
       <CateCards url={"../../Photos_coro/plum_img.jpg"} type={"Plumber"} />
       <CateCards url={"../../Photos_coro/elec_img.jpg"} type={"Electrician"} />

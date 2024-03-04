@@ -84,7 +84,7 @@ export default function DashSidebar() {
                   icon={HiDocumentText}
                   as='div'
                 >
-                  Your Profile
+                  Your Services
                 </Sidebar.Item>
               </Link>
             )}

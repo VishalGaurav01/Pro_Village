@@ -127,7 +127,7 @@ const handleSubmit = async (e) => {
                 
             </Button>
         </div>
-        <div className="p-7 flex-1">
+        <div className="p-7 flex-1 object-cover overflow-hidden">
             <img src={post && post.image}
         alt={post && post.title} />
         </div>
