@@ -39,3 +39,6 @@ body {
 .dark .post-content a {
   color: red;
 }
+.custom-text-sm {
+  font-size: 9px; /* Adjust the font size as needed */
+}

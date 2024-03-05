@@ -1,4 +1,4 @@
-import { Modal, Table, Button } from 'flowbite-react';
+import { Modal, Table, Button , Alert} from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,12 +10,37 @@ export default function Notice() {
   const [showModal, setShowModal] = useState(false);
   const [showAccept, setShowAccept] = useState(false);
 
-  const handleDelete = async () => {}
+  const handleDelete = async () => {
+    try {
+      setShowModal(false);
+      const res = await fetch(
+        `/api/user/delete-notify`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: currentUser._id,
+            notification: notificationToDelete, // Pass the notification to delete
+          }),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        console.error(data.message);
+      } else {
+        console.log('Notification deleted successfully');
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const handleSubmit = async () => {}
  
   return (
     <div className='table-auto overflow-x-scroll  md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
-      {currentUser.notification ? (
+      {currentUser.notification.length>0 ? (
         <><Table hoverable className='shadow-md'>
   <Table.Head>
   <Table.HeadCell>Date & Time</Table.HeadCell>
@@ -61,7 +86,9 @@ export default function Notice() {
 </Table>
         </>
       ) : (
-        <p>You have no posts yet!</p>
+        <Alert className='mt-2' color='failure'>
+        You have no notification yet!
+          </Alert>
       )}
       <Modal
         show={showModal}
@@ -86,7 +113,6 @@ export default function Notice() {
           </div>
         </Modal.Body>
       </Modal>
-      
       <Modal
         show={showAccept}
         onClose={() => setShowAccept(false)}

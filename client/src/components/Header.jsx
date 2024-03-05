@@ -34,7 +34,7 @@ export default function Header() {
       navigate(`/search?${searchQuery}`);
     };
   
-
+    const notificationCount = currentUser?.notification.length;
     const handleSignout = async () => {
       try {
         const res = await fetch('/api/user/signout', {
@@ -75,11 +75,17 @@ export default function Header() {
         <AiOutlineSearch />
       </Button>
       <div className='flex gap-2 md:order-2'>
-      <Button className='w-12 h-10 ' color='gray' pill>
-        <Link to='/notification'> 
-        <FaBell/>
-        </Link>
+      <Link to='/notification'> 
+      <div className='relative'>
+      <Button className='w-12 h-10 ' color='gray' pill >
+        <FaBell />
+        <i class="fa fa-bell" aria-hidden="true"></i>
       </Button>
+      {notificationCount > 0 && (
+      <span className='absolute top-0 right-0 inline-block bg-red-500 text-white rounded-full px-2 py-1 custom-text-sm'>{notificationCount}</span>
+    )}
+    </div>
+      </Link>
         <Button
           className='w-12 h-10 hidden sm:inline'
           color='gray'

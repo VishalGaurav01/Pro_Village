@@ -17,7 +17,7 @@ export default function PostPage() {
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState(null);
-
+  const [recent, setrecent]= useState(true);
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
@@ -26,8 +26,10 @@ const handleSubmit = async (e) => {
     console.error('User data is missing or invalid');
     return;
   }
+  setLoading(true);
     // await axios.post('/api/user/apply-notify', { userId : post.userId });
     // alert('Request sent successfully');
+    setrecent(false);
     const currentDate = new Date();
     const dateTimeString = currentDate.toLocaleString('en-IN');
     const res = await fetch('/api/user/apply-notify', {
@@ -44,9 +46,18 @@ const handleSubmit = async (e) => {
           datetime:dateTimeString,
         }),
     });
-
+    if (!res.ok) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+    if (res.ok) {
+      setLoading(false);
+      setError(false);
+    }
 } catch (error) {
-    console.error('Error sending request:', error);
+  setError(true);
+  setLoading(false);
   }
 };
 
@@ -132,7 +143,7 @@ const handleSubmit = async (e) => {
               handleSubmit
             } gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
                 
-                    Send Request
+                  {recent ? ('Send Request'):('Request Sent!') }  
                 
             </Button>
         </div>
