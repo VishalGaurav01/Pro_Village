@@ -33,7 +33,7 @@ export default function Main() {
         <Route path="/Signup" element={<Signup />}/>
         <Route path="/Signin" element={<Signin />}/>
         <Route path="/Search" element={<Search />}/>
-        <Route path="/Projects" element={<Projects />}/>
+        <Route path="/Project" element={<Projects />}/>
         <Route path='/post/:postSlug' element={<PostPage/>}/>
       </Routes>
       <Footer/>
