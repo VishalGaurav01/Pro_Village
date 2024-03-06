@@ -14,6 +14,7 @@ import UpdatePost from './pages/UpdatePost'
 import PostPage from './pages/PostPage'
 import Notice from './pages/Notice'
 import Search from './pages/Search'
+import ProductPage from './pages/ProductPage'
 
 export default function Main() {
   return (
@@ -34,6 +35,7 @@ export default function Main() {
         <Route path="/Signin" element={<Signin />}/>
         <Route path="/Search" element={<Search />}/>
         <Route path="/Project" element={<Projects />}/>
+        <Route path="/Product" element={<ProductPage />}/>
         <Route path='/post/:postSlug' element={<PostPage/>}/>
       </Routes>
       <Footer/>

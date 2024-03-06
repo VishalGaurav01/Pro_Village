@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import { Rating } from 'flowbite-react';
 export default function PostCard({url , type}) {
   return (
     <div className='group relative w-full border border-teal-500 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[430px] transition-all'>
@@ -16,11 +17,13 @@ export default function PostCard({url , type}) {
             {/* <div className='mx-auto my-auto flex flex-col'> */}
             {/* <h3 className='text-lg font-semibold line-clamp-2'>Price: 300</h3> */}
               <div className=' mx-auto mt-3 flex flex-row'>
-                  <FaStar/>
-                  <FaStar/>
-                  <FaStar/>
-                  <FaStar/>
-                  <FaStar/>
+              <Rating>
+      <Rating.Star />
+      <Rating.Star />
+      <Rating.Star />
+      <Rating.Star />
+      <Rating.Star filled={false}/>
+    </Rating>
               </div>
             </div>
             {/* </div> */}
