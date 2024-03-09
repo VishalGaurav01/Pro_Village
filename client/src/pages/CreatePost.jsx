@@ -117,7 +117,7 @@ export default function CreatePost()
     }
   };
     return (
-<div className='p-3 max-w-3xl mx-auto min-h-screen'>
+<div className='p-3 max-w-3xl mx-auto min-h-screen '>
     {(!currentUser.isProvider || currentUser.isAdmin || userPosts.length==0)?
           (<>
             <h1 className='text-center text-3xl my-7 font-semibold'>Application Form</h1>
@@ -175,7 +175,7 @@ export default function CreatePost()
   </div> */}
   {/* <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"/>
 </div> */}
-          <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
+          <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3 '>
           <FileInput
             type='file'
             accept='image/*'

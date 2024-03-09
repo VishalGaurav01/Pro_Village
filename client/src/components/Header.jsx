@@ -52,11 +52,12 @@ export default function Header() {
     };
 
   return (
-    <Navbar className='border-b-2'>
+    <div>
+    <Navbar className='bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600'>
       <Link
         to='/'
         className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
-        <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>
+        <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>
           Pro
         </span>
         Village
@@ -71,13 +72,13 @@ export default function Header() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+      <Button className='w-12 h-11 lg:hidden' color='gray' pill>
         <AiOutlineSearch />
       </Button>
       <div className='flex gap-2 md:order-2'>
       <Link to='/notification'> 
       <div className='relative'>
-      <Button className='w-12 h-10 ' color='gray' pill >
+      <Button className='w-12 h-11 ' color='gray' pill >
         <FaBell />
         <i class="fa fa-bell" aria-hidden="true"></i>
       </Button>
@@ -87,7 +88,7 @@ export default function Header() {
     </div>
       </Link>
         <Button
-          className='w-12 h-10 hidden sm:inline'
+          className='w-12 h-11 hidden sm:inline'
           color='gray'
           pill
           onClick={()=>Dispatch(toggleTheme())}
@@ -149,16 +150,19 @@ export default function Header() {
             <Navbar.Link active={path==="/"} as={'div'} >
             <Link to='/'>Home</Link>
             </Navbar.Link>
-            <Navbar.Link active={path==="/About"} as={'div'} >
-            <Link to='/About'>About</Link>
-            </Navbar.Link>
             <Navbar.Link active={path === '/Project'} as={'div'}>
             <Link to='/Project'>Shop</Link>
             </Navbar.Link>
             <Navbar.Link active={path === '/Create-post'} as={'div'}>
             <Link to='/Create-post'>Apply Service</Link>
             </Navbar.Link>
+            <Navbar.Link active={path==="/About"} as={'div'} >
+            <Link to='/About'>About</Link>
+            </Navbar.Link>
          </Navbar.Collapse>
           </Navbar>
+          <div className="pt-16">
+            </div>
+          </div>
   )
 }

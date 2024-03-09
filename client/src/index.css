@@ -81,3 +81,12 @@ body {
   background-color: #000; /* Adjust color as needed */
   margin: 10px 0; /* Adjust margin as needed */
 }
+.containerx {
+  display: flex;
+  flex-direction: row; /* Adjust the gap between the divs as needed */
+}
+
+.cardx {
+  width: 50%; /* Make the card cover half of the screen size */
+  height: 500px;
+}

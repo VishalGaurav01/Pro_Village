@@ -188,9 +188,9 @@ export default function ProductPage() {
 </div>      
                 </div>
                 <hr className="line" />
-                <div class="grid grid-cols-3 gap-4 mt-3">
-    <Card href="#" className="max-w-sm w-50 p-0.5">
-        <h5 className="text-1xl font-bold tracking-tight text-gray-900 dark:text-white">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3 ">
+    <Card href="#" className="max-w-sm w-50 p-0.5 ">
+        <h5 className="text-1xl font-bold tracking-tight text-gray-900 dark:text-white ">
             Bank Offers
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
@@ -226,12 +226,14 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
                 making them a timeless symbol of athleticism and self-expression.
                 </p>  */}
                 {currentUser.isProvider ? (<div className='flex flex-row'>
-                <h4 className='text-3xl text-yellow-300 font-semibold'>$199.00</h4>
-                <h6 className='text-xl font-semibold relative'>
-                <span className="line3a"></span>
-                <span className="text3a">MRP:</span>
-                <span className="text3a">$299.00</span>
-                </h6>
+                {/* <h4 className='text-3xl text-yellow-300 font-semibold'>$199.00</h4> */}
+                <span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">$79</span>
+                <span class="text-lg font-medium text-gray-900 line-through dark:text-white"> $109</span>
+                {/* <h6 className='text-xl font-semibold relative'> */}
+                {/* <span className="line3a"></span> */}
+                {/* <span className="text3a">MRP:</span> */}
+                {/* <span className="text3a">$299.00</span> */}
+                {/* </h6> */}
                 </div>):(<h4 className='text-3xl  text-yellow-300 font-semibold'>MRP: $299.00</h4>)}
                 
                 <div className='flex flex-row items-center gap-10'>
@@ -254,6 +256,43 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
             </div>
                 </div>
                 <hr className="line" />
+                
+
+{/* <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="p-8 rounded-t-lg" src="/docs/images/products/apple-watch.png" alt="product image" />
+    </a>
+    <div class="px-5 pb-5">
+        <a href="#">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+        </a>
+        <div class="flex items-center mt-2.5 mb-5">
+            <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+        </div>
+    </div>
+</div> */}
+
                 {/* <div class="grid sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-5 gap-2 mt-2 align-middle">
         <Link to='/notification'> 
                 <div className='relative'>

@@ -10,7 +10,7 @@ export default function ProductCard({url,price,detail}) {
 //     <a href="#">
 //         <img class="p-8 rounded-t-lg transition-transform duration-300 transform hover:scale-110" src={url} alt="product image" style={{width: '375px', height: '400px', objectFit: 'cover'  }}/>
 //     </a> 
-<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div className="w-full max-w-sm bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 <Link to="/Product" className="relative group">
   <div className="relative overflow-hidden group">
     <img
