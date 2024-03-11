@@ -164,7 +164,7 @@ export default function CreatePost()
             {/* <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block focus:ring-blue-500 focus:border-blue-500  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"/> */}
             <TextInput
             type='text'
-            placeholder='IFSC Code'
+            placeholder='Phone Number'
             className="flex-1" onChange={(e) => setFormData({...formData, ifsc: e.target.value})}/> 
             </div>
             {/* <div class="relative max-w-sm">

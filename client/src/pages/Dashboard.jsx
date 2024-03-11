@@ -25,7 +25,6 @@ export default function Dashboard() {
     {tab==='posts' && <DashPosts/>}
     {tab==='postspro' && <DashProviderPosts/>}
     {tab==='users' && <DashUsers/>}
-    
     </div>
   )
 }

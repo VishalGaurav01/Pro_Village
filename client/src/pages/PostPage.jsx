@@ -7,8 +7,6 @@ import { Link, useParams } from 'react-router-dom';
 // import CommentSection from '../components/CommentSection';
 import PostCard from '../components/PostCard';
 import { useSelector } from 'react-redux';
-// import axios from 'axios';
-
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -27,8 +25,6 @@ const handleSubmit = async (e) => {
     return;
   }
   setLoading(true);
-    // await axios.post('/api/user/apply-notify', { userId : post.userId });
-    // alert('Request sent successfully');
     setrecent(false);
     const currentDate = new Date();
     const dateTimeString = currentDate.toLocaleString('en-IN');
@@ -90,7 +86,6 @@ const handleSubmit = async (e) => {
       const fetchRecentPosts = async () => {
         const res = await fetch(`/api/post/getposts?category=${post?.category}&limit=3`);
         const data = await res.json();
-
         if (res.ok) {
           setRecentPosts(data.posts);
         }
@@ -133,7 +128,7 @@ const handleSubmit = async (e) => {
             Price: 300 
             </h2>
             <h2 className='text-2xl text-left ml-20 pl-20'>
-            Contact : {post && post.aadhar}
+            Contact : {post && post.ifsc}
             </h2>
             <div
         className='p-3 max-w-2xl mx-auto w-full post-content'

@@ -15,6 +15,7 @@ import PostPage from './pages/PostPage'
 import Notice from './pages/Notice'
 import Search from './pages/Search'
 import ProductPage from './pages/ProductPage'
+import CreateShop from './pages/CreateShop'
 
 export default function Main() {
   return (
@@ -25,17 +26,18 @@ export default function Main() {
         <Route path="/about" element={<About />}/>
         <Route element={<PrivateRoute/>}>
         <Route path="/Dashboard" element={<Dashboard />}/>
-        </Route>
-        <Route element={<PrivateRoute/>}>
         <Route path="/Create-post" element={<CreatePost />}/>
         <Route path="/updatepost/:postId" element={<UpdatePost />}/>
         <Route path="/notification" element={<Notice/>}/>
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute/>}>
+        <Route path="/Create-shop" element={<CreateShop/>}/>
         </Route>
         <Route path="/Signup" element={<Signup />}/>
         <Route path="/Signin" element={<Signin />}/>
         <Route path="/Search" element={<Search />}/>
         <Route path="/Project" element={<Projects />}/>
-        <Route path="/Product" element={<ProductPage />}/>
+        <Route path="/shop/:shopSlug" element={<ProductPage />}/>
         <Route path='/post/:postSlug' element={<PostPage/>}/>
       </Routes>
       <Footer/>

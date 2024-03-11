@@ -1,107 +1,70 @@
-// import React, { useState } from 'react'
-
-// export default function ProductPage () {
-
-
-//     const [images, setImages] = useState({
-//         img1 : "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,b_rgb:f5f5f5/3396ee3c-08cc-4ada-baa9-655af12e3120/scarpa-da-running-su-strada-invincible-3-xk5gLh.png",
-//         img2 : "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/e44d151a-e27a-4f7b-8650-68bc2e8cd37e/scarpa-da-running-su-strada-invincible-3-xk5gLh.png",
-//         img3 : "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/44fc74b6-0553-4eef-a0cc-db4f815c9450/scarpa-da-running-su-strada-invincible-3-xk5gLh.png",
-//         img4 : "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/d3eb254d-0901-4158-956a-4610180545e5/scarpa-da-running-su-strada-invincible-3-xk5gLh.png"
-//     })
-
-//     const [activeImg, setActiveImage] = useState(images.img1)
-
-//     const [amount, setAmount] = useState(1);
-
-
-//     return (
-//         <div className='flex flex-col justify-between lg:flex-row gap-16 lg:items-center'>
-//             {/* <div className='flex flex-col gap-6 lg:w-2/4'>
-//                 <img src={activeImg} alt="" className='w-full h-full aspect-square object-cover rounded-xl'/>
-//                 <div className='flex flex-row justify-between h-24'>
-//                     <img src={images.img1} alt="" className='w-24 h-24 rounded-md cursor-pointer' onClick={() => setActiveImage(images.img1)}/>
-//                     <img src={images.img2} alt="" className='w-24 h-24 rounded-md cursor-pointer' onClick={() => setActiveImage(images.img2)}/>
-//                     <img src={images.img3} alt="" className='w-24 h-24 rounded-md cursor-pointer' onClick={() => setActiveImage(images.img3)}/>
-//                     <img src={images.img4} alt="" className='w-24 h-24 rounded-md cursor-pointer' onClick={() => setActiveImage(images.img4)}/>
-//                 </div>
-//             </div> */}
-            
-
-// <div class="grid gap-4">
-//     <div>
-//         <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
-//     </div>
-//     <div class="grid grid-cols-5 gap-4">
-//         <div>
-//             <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-//         </div>
-//         <div>
-//             <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-//         </div>
-//         <div>
-//             <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-//         </div>
-//         <div>
-//             <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-//         </div>
-//         <div>
-//             <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg" alt=""/>
-//         </div>
-//     </div>
-// </div>
-
-//             {/* ABOUT */}
-//             <div className='flex flex-col gap-4 lg:w-2/4'>
-//                 <div>
-//                     <span className=' text-violet-600 font-semibold'>Special Sneaker</span>
-//                     <h1 className='text-3xl font-bold'>Nike Invincible 3</h1>
-//                 </div>
-//                 <p className='text-gray-700'>
-//                 Con un'ammortizzazione incredibile per sostenerti in tutti i tuoi chilometri, Invincible 3 offre un livello di comfort elevatissimo sotto il piede per aiutarti a dare il massimo oggi, domani e oltre. Questo modello incredibilmente elastico e sostenitivo, è pensato per dare il massimo lungo il tuo percorso preferito e fare ritorno a casa carico di energia, in attesa della prossima corsa.
-//                 </p>
-//                 <h6 className='text-2xl font-semibold'>$ 299.00</h6>
-//                 <div className='flex flex-row items-center gap-12'>
-//                     <div className='flex flex-row items-center'>
-//                         <button className='bg-gray-200 py-2 px-5 rounded-lg text-violet-800 text-3xl' onClick={() => setAmount((prev) => prev - 1)}>-</button>
-//                         <span className='py-4 px-6 rounded-lg'>{amount}</span>
-//                         <button className='bg-gray-200 py-2 px-4 rounded-lg text-violet-800 text-3xl' onClick={() => setAmount((prev) => prev + 1)}>+</button>
-//                     </div>
-//                     <button className='bg-violet-800 text-white font-semibold py-3 px-16 rounded-xl h-full'>Add to Cart</button>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-import React, { useState } from 'react';
-import { Button } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+// import { Button } from 'flowbite-react';
+// import { Link } from 'react-router-dom';
 import { Rating,Modal } from 'flowbite-react';
 import { Card } from 'flowbite-react';
 import { useSelector } from 'react-redux';
-import { FaCar, FaLock, FaRegCreditCard, FaRetweet, FaShieldAlt } from 'react-icons/fa';
+import { Button, Spinner } from 'flowbite-react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+// import { FaDollerSign } from 'react-icons/fa';
+// import { FaRupeeSign } from 'react-icons/fa';
+// import CallToAction from '../components/CalltoAction';
+// import CommentSection from '../components/CommentSection';
+// import PostCard from '../components/PostCard';
+import { FaCar, FaCheck, FaCheckCircle, FaLock, FaRegCreditCard, FaRetweet, FaShieldAlt } from 'react-icons/fa';
 
 export default function ProductPage() {
-    
+    const { shopSlug } = useParams();
+    const { currentUser } = useSelector((state) => state.user);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [shop, setShop] = useState(null);
+    const [recentShops, setRecentShops] = useState(null);
+    const [recent, setrecent]= useState(true);
     const [images, setImages] = useState({
-        img1: "https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg",
         img2: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
         img3: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
         img4: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
         img5: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
         img6: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
     });
-    const {currentUser} = useSelector(state=>state.user);
-    const [activeImg, setActiveImage] = useState(images.img1);
+    const [activeImg, setActiveImage] = useState(null);
+    // const {currentUser} = useSelector(state=>state.user);
     const [amount, setAmount] = useState(1);
     const [modal, setmodal] = useState(null);
+    useEffect(() => {
+        const fetchShop = async () => {
+          try {
+            setLoading(true);
+            const res = await fetch(`/api/shop/getshops?slug=${shopSlug}`);
+            const data = await res.json();
+            if (!res.ok) {
+              setError(true);
+              setLoading(false);
+              return;
+            }
+            if (res.ok) {
+              setShop(data.shops[0]);
+              setActiveImage(data.shops[0]?.image);
+              setLoading(false);
+              setError(false);
+            }
+          } catch (error) {
+            setError(true);
+            setLoading(false);
+          }
+        };
+        fetchShop();
+      }, [shopSlug]);
+
     return (
         <div className='flex flex-col lg:flex-row gap-8 lg:items-center my-4 mx-4'>
             {/* Grid Div */}
             <div className="lg:w-1/2">
                 <div class="grid gap-4">
                     <div style={{ height: '600px' }}>
-                        <img class="h-full  max-w-full rounded-lg object-cover object-center cursor-pointer" onClick={() => setActiveImage(images.img1)} src={activeImg} alt=""/>
+                        <img class="h-full  w-full rounded-lg object-center cursor-pointer" onClick={() => setActiveImage(shop?.image)} src={activeImg} alt=""/>
                     </div>
                     <div class="grid grid-cols-5 gap-4">
                         <div>
@@ -126,8 +89,8 @@ export default function ProductPage() {
             {/* About Div */}
             <div className='flex flex-col gap-2 lg:w-1/2'>
                 <div>
-                    <span className='text-violet-600 font-semibold'>Special Sneaker</span>
-                    <h1 className='text-3xl font-bold'>Nike Invincible 3</h1>
+                    <span className='text-violet-600 font-semibold'>{shop && shop.brand}</span>
+                    <h1 className='text-3xl font-bold'>{shop && shop.title}</h1>
                     <hr className="line" />
 
 <div class="flex items-center mb-2 " >
@@ -227,14 +190,16 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
                 </p>  */}
                 {(currentUser.isProvider || currentUser.isAdmin) ? (<div className='flex flex-row'>
                 {/* <h4 className='text-3xl text-yellow-300 font-semibold'>$199.00</h4> */}
-                <span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">$79</span>
-                <span class="text-lg font-medium text-gray-900 line-through dark:text-white"> $109</span>
+                <span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">${shop && shop.disprice}</span>
+                <span class="text-lg font-medium text-gray-900 line-through dark:text-white"> ${shop && shop.price}</span>
                 {/* <h6 className='text-xl font-semibold relative'> */}
                 {/* <span className="line3a"></span> */}
                 {/* <span className="text3a">MRP:</span> */}
                 {/* <span className="text3a">$299.00</span> */}
                 {/* </h6> */}
-                </div>):(<span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">$109</span>)}
+                
+                <span class="ms-3 text-3xl mt-1 text-blue-600 font-medium pr-2 "><FaCheckCircle/></span>
+                </div>):(<span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">${shop && shop.price}</span>)}
                 
                 <div className='flex flex-row items-center gap-10'>
                     <div className='flex flex-row items-center'>

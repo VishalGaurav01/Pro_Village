@@ -8,11 +8,8 @@ export const create = async (req, res, next) => {
   if (!req.body.title || !req.body.price) {
     return next(errorHandler(400, 'Please provide all required fields'));
   }
-  const slug = req.body.userId
-    .split(' ')
-    .join('-')
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9-]/g, '');
+  let x = Math.random() * 1000000;
+  const slug = x;
   const newShop = new Shop({
     ...req.body,
     slug,
