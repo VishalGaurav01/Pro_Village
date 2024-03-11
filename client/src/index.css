@@ -90,3 +90,16 @@ body {
   width: 50%; /* Make the card cover half of the screen size */
   height: 500px;
 }
+#typing-text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.typing-animation {
+  animation: typing 3s steps(30, end) infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}

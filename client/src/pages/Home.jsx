@@ -29,6 +29,16 @@ const [posts, setPosts] = useState([]);
     };
     fetchPosts();
   }, []);
+  // const text = 'Pro Village';
+  // let index = 0;
+  // const typingText = document.getElementById('typing-text');
+  
+  // function typeCharacters() {
+  //   typingText.textContent = text.slice(0, index);
+  //   index = (index + 1) % (text.length + 1);
+  // }
+  
+  // setInterval(typeCharacters, 10);
 
   return (
     <div>
@@ -36,12 +46,23 @@ const [posts, setPosts] = useState([]);
       <Corousal/>
       </div> */}
       <div className='w-full h-full bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]'>
-      {/* <TextTyping text="This text will be typed out." speed={10} /> */}
       <div className=' flex flex-col gap-6 p-20 mb-10  px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
         <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>
               Pro
         </span>Village</h1>
+        {/* <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
+  <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700 typing-animation'>
+    Pro
+  </span>
+  <span id="typing-text" className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>Village</span>
+</h1> */}
+{/* <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
+  <span id="typing-text" className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'></span>
+</h1> */}
+{/* <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
+  <span id="typing-text" className='text-3xl font-bold lg:text-6xl'></span>
+</h1> */}
         <p className='text-gray-500 text-xs sm:text-sm'>
           Here you'll find a variety of articles and tutorials on topics such as
           web development, software engineering, and programming languages.
@@ -55,7 +76,7 @@ const [posts, setPosts] = useState([]);
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
 
 <div class="flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-gradient-to-b dark:from-[rgb(16,23,42)] to-teal-100 from-teal-700 dark:to-[rgb(8,46,77)] rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] dark:bg- rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Keep Searching for</h5>
     <div class="grid grid-cols-2 gap-2">
       <div className='h-44'>
@@ -77,7 +98,7 @@ const [posts, setPosts] = useState([]);
   </div>
 </div>
 <div class="flex justify-center items-center h-full">
-<div class="w-full max-w-sm p-4 border bg-gradient-to-b dark:to-[rgb(8,46,77)] to-teal-100 from-teal-700 dark:from-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+    <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Categories to Explore</h5>
         <div class="grid grid-cols-2 gap-2">
         <div className='h-44'>
@@ -96,11 +117,10 @@ const [posts, setPosts] = useState([]);
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
           <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
         </div>
+    </div>
 </div>
-</div>
-
 <div class="relative flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-gradient-to-b  dark:to-[rgb(8,46,77)] to-teal-100 from-teal-700 dark:from-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3"> Up to 60% off</h5>
     <div class="grid grid-cols-2 gap-2">
       <div className='h-44'>
@@ -120,16 +140,12 @@ const [posts, setPosts] = useState([]);
       <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
   </div>
- {/* <div class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white py-1 px-4 rounded-tr-lg rounded-bl-lg" 
- style={{ zIndex: 10, clipPath: 'polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%)' }}>
-      Sale
-    </div> */}
     <div class="absolute top-0 right-0 bg-red-500 text-white w-8 h-8 flex justify-center items-center rounded-full">
       <span>Sale</span>
     </div>
 </div>
 <div class="relative flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-gradient-to-b  dark:to-[rgb(8,46,77)] to-teal-100 from-teal-700 dark:from-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Deal of the Day</h5>
     <div class="grid grid-cols-2 gap-2">
       <div className='h-44'>
@@ -145,23 +161,16 @@ const [posts, setPosts] = useState([]);
         <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
       </div>
     </div>
-    <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
+    <div class="text-sm font-medium text-gray-500  dark:text-gray-300 p-3">
       <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
   </div>
- {/* <div class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white py-1 px-4 rounded-tr-lg rounded-bl-lg" 
- style={{ zIndex: 10, clipPath: 'polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%)' }}>
-      Best Offers
-    </div> */}
     <div class="absolute top-0 right-0  bg-blue-500 text-white py-1 px-4 rounded-lg transform -rotate-[0deg]">
       <span>Best Offers</span>
     </div>
-    {/* <div class="absolute top-4 right-4 bg-red-500 text-white w-8 h-8 flex justify-center items-center rounded-full">
-      <span>Sale</span>
-    </div> */}
 </div>
       </div>
-  </div>
+ </div>
 
   {/* <div className='flex flex-col gap-6 p-20 my-10 px-3 max-w-6xl mx-auto bg-gradient-to-b from-red-300 to-white'>
   <h1 className='text-3xl font-bold lg:text-6xl'>
@@ -189,7 +198,6 @@ const [posts, setPosts] = useState([]);
       <CateCards url={"../../Photos_coro/cl_img.jpg"} type={"Cleaner"} />
       <CateCards url={"../../Photos_coro/car_img.jpg"} type={"Carpenter"} />
       <CateCards url={"../../Photos_coro/par_img.jpg"} type={"Beautician"} />
-      {/* <ProductCard url={"../../Photos_coro/par_img.jpg"}/> */}
       </div>
     </div>
   )}

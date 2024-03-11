@@ -225,7 +225,7 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
                 colors, and customization options, Nike shoes cater to individuals of all ages, backgrounds, and interests, 
                 making them a timeless symbol of athleticism and self-expression.
                 </p>  */}
-                {currentUser.isProvider ? (<div className='flex flex-row'>
+                {(currentUser.isProvider || currentUser.isAdmin) ? (<div className='flex flex-row'>
                 {/* <h4 className='text-3xl text-yellow-300 font-semibold'>$199.00</h4> */}
                 <span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">$79</span>
                 <span class="text-lg font-medium text-gray-900 line-through dark:text-white"> $109</span>
@@ -234,7 +234,7 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
                 {/* <span className="text3a">MRP:</span> */}
                 {/* <span className="text3a">$299.00</span> */}
                 {/* </h6> */}
-                </div>):(<h4 className='text-3xl  text-yellow-300 font-semibold'>MRP: $299.00</h4>)}
+                </div>):(<span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">$109</span>)}
                 
                 <div className='flex flex-row items-center gap-10'>
                     <div className='flex flex-row items-center'>
