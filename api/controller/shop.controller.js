@@ -26,8 +26,18 @@ export const create = async (req, res, next) => {
 export const getshops = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 10;
-    const sortDirection = req.query.order === 'asc' ? 1 : -1;
+    const limit = parseInt(req.query.limit) || 9;
+    let sortField = 'createdAt'; // Default sort field
+    let sortOrder = -1; // Default sort order (descending)
+
+    // Determine sort field and order based on query parameter
+    if (req.query.sort === 'asc') {
+      sortField = 'price'; // Sort by price ascending
+      sortOrder = 1;
+    } else if (req.query.sort === 'dsc') {
+      sortField = 'price'; // Sort by price descending
+      sortOrder = -1;
+    }
     const shops = await Shop.find({
       ...(req.query.userId && { userId: req.query.userId }),
       ...(req.query.category && { category: req.query.category }),
@@ -46,7 +56,7 @@ export const getshops = async (req, res, next) => {
         ],
       }),
     })
-      .sort({ updatedAt: sortDirection })
+      .sort({ [sortField]: sortOrder })
       .skip(startIndex)
       .limit(limit);
 

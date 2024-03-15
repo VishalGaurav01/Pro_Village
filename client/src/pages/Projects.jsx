@@ -1,464 +1,350 @@
-import React, { useState } from 'react'
-// import ele1 from '../../Photos_coro'
-import ProductCard from '../components/ProductCard.jsx'
-export default function Projects() {
-  const [num, setnum]= useState(0);
+
+// import { Button, Select, TextInput } from 'flowbite-react';
+// import { useEffect, useState } from 'react';
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import ProductCard2 from '../components/ProductCard2';
+
+// export default function Search() {
+//   const [sidebarData, setSidebarData] = useState({
+//     searchTerm: '',
+//     sort: 'desc',
+//     category: 'uncategorized',
+//   });
+
+//   console.log(sidebarData);
+//   const [shops, setShops] = useState([]);
+//   const [loading, setLoading] = useState(false);
+//   const [showMore, setShowMore] = useState(false);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const urlParams = new URLSearchParams(location.search);
+//     const searchTermFromUrl = urlParams.get('searchTerm');
+//     const sortFromUrl = urlParams.get('sort');
+//     const categoryFromUrl = urlParams.get('category');
+//     if (searchTermFromUrl || sortFromUrl || categoryFromUrl) {
+//       setSidebarData({
+//         ...sidebarData,
+//         searchTerm: searchTermFromUrl,
+//         sort: sortFromUrl,
+//         category: categoryFromUrl,
+//       });
+//     }
+
+//     const fetchShops = async () => {
+//       setLoading(true);
+//       const searchQuery = urlParams.toString();
+//       const res = await fetch(`/api/shop/getshops?${searchQuery}`);
+//       if (!res.ok) {
+//         setLoading(false);
+//         return;
+//       }
+//       if (res.ok) {
+//         const data = await res.json();
+//         setShops(data.shops);
+//         setLoading(false);
+//         if (data.shops.length === 10) {
+//           setShowMore(true);
+//         } else {
+//           setShowMore(false);
+//         }
+//       }
+//     };
+//     fetchShops();
+//   }, [location.search]);
+
+//   const handleChange = (e) => {
+//     if (e.target.id === 'searchTerm') {
+//       setSidebarData({ ...sidebarData, searchTerm: e.target.value });
+//     }
+//     if (e.target.id === 'sort') {
+//       const order = e.target.value || 'desc';
+//       setSidebarData({ ...sidebarData, sort: order });
+//     }
+//     if (e.target.id === 'category') {
+//       const category = e.target.value || 'uncategorized';
+//       setSidebarData({ ...sidebarData, category });
+//     }
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const urlParams = new URLSearchParams(location.search);
+//     urlParams.set('searchTerm', sidebarData.searchTerm);
+//     urlParams.set('sort', sidebarData.sort);
+//     urlParams.set('category', sidebarData.category);
+//     const searchQuery = urlParams.toString();
+//     navigate(`/shop?${searchQuery}`);
+//   };
+
+//   const handleShowMore = async () => {
+//     const numberOfShops = shops.length;
+//     const startIndex = numberOfShops;
+//     const urlParams = new URLSearchParams(location.search);
+//     urlParams.set('startIndex', startIndex);
+//     const searchQuery = urlParams.toString();
+//     const res = await fetch(`/api/shop/getshops?${searchQuery}`);
+//     if (!res.ok) {
+//       return;
+//     }
+//     if (res.ok) {
+//       const data = await res.json();
+//       setShops([...shops, ...data.shops]);
+//       if (data.shops.length === 10) {
+//         setShowMore(true);
+//       } else {
+//         setShowMore(false);
+//       }
+//     }
+//   };
+
+//   return (
+//     <div className='flex flex-col md:flex-row'>
+//       <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
+//         <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
+//           <div className='flex   items-center gap-2'>
+//             <label className='whitespace-nowrap font-semibold'>
+//               Search Term:
+//             </label>
+//             <TextInput
+//               placeholder='Search...'
+//               id='searchTerm'
+//               type='text'
+//               value={sidebarData.searchTerm}
+//               onChange={handleChange}
+//             />
+//           </div>
+//           <div className='flex items-center gap-2'>
+//             <label className='font-semibold'>Sort by Price:</label>
+//             <Select onChange={handleChange} value={sidebarData.sort} id='sort'>
+//               <option value='dsc'>High-to-Low</option>
+//               <option value='asc'>Low-to-High</option>
+//             </Select>
+//           </div>
+//           <div className='flex items-center gap-2'>
+//             <label className='font-semibold'>Category:</label>
+//             <Select
+//               onChange={handleChange}
+//               value={sidebarData.category}
+//               id='category'
+//             >
+//               <option value='uncategorized'>Uncategorized</option>
+//               <option value='electrician'>Electrician</option>
+//               <option value='plumber'>Plumber</option>
+//               <option value='cleaner'>Cleaner</option>
+//               <option value='mechanic'>Mechanic</option>
+//               <option value='carpenter'>Carpenter</option>
+//               <option value='beauticians'>Beauticians</option>
+//             </Select>
+//           </div>
+//           <Button type='submit' outline gradientDuoTone='purpleToPink'>
+//             Apply Filters
+//           </Button>
+//         </form>
+//       </div>
+//       <div className='w-full'>
+//         <h1 className='text-3xl font-semibold text-center bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]  p-10 mt-0 '>
+//           Products Section
+//         </h1>
+//         <div className='p-5 flex flex-wrap gap-4 '>
+//           {!loading && shops.length === 0 && (
+//             <p className='text-xl text-gray-500'>No result found.</p>
+//           )}
+//           {loading && <p className='text-xl text-gray-500'>Loading...</p>}
+//           {!loading &&
+//             shops &&
+//             shops.map((shop) => <ProductCard2 key={shop._id} shop={shop} />)}
+//           {showMore && (
+//             <button
+//               onClick={handleShowMore}
+//               className='text-teal-500 text-lg hover:underline p-7 w-full'
+//             >
+//               Show More
+//             </button>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+import { Button, Select, TextInput } from 'flowbite-react';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import ProductCard2 from '../components/ProductCard2';
+
+export default function Search() {
+  const [sidebarData, setSidebarData] = useState({
+    searchTerm: '',
+    sort: 'desc',
+    category: 'uncategorized',
+  });
+  const [sidebarVisible, setSidebarVisible] = useState(false); // State to control sidebar visibility
+
+  const [shops, setShops] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    const sortFromUrl = urlParams.get('sort');
+    const categoryFromUrl = urlParams.get('category');
+    if (searchTermFromUrl || sortFromUrl || categoryFromUrl) {
+      setSidebarData({
+        ...sidebarData,
+        searchTerm: searchTermFromUrl,
+        sort: sortFromUrl,
+        category: categoryFromUrl,
+      });
+    }
+
+    const fetchShops = async () => {
+      setLoading(true);
+      const searchQuery = urlParams.toString();
+      const res = await fetch(`/api/shop/getshops?${searchQuery}`);
+      if (!res.ok) {
+        setLoading(false);
+        return;
+      }
+      if (res.ok) {
+        const data = await res.json();
+        setShops(data.shops);
+        setLoading(false);
+        if (data.shops.length === 10) {
+          setShowMore(true);
+        } else {
+          setShowMore(false);
+        }
+      }
+    };
+    fetchShops();
+  }, [location.search]);
+
+  const handleChange = (e) => {
+    if (e.target.id === 'searchTerm') {
+      setSidebarData({ ...sidebarData, searchTerm: e.target.value });
+    }
+    if (e.target.id === 'sort') {
+      const order = e.target.value || 'desc';
+      setSidebarData({ ...sidebarData, sort: order });
+    }
+    if (e.target.id === 'category') {
+      const category = e.target.value || 'uncategorized';
+      setSidebarData({ ...sidebarData, category });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('searchTerm', sidebarData.searchTerm);
+    urlParams.set('sort', sidebarData.sort);
+    urlParams.set('category', sidebarData.category);
+    const searchQuery = urlParams.toString();
+    navigate(`/shop?${searchQuery}`);
+  };
+
+  const handleShowMore = async () => {
+    const numberOfShops = shops.length;
+    const startIndex = numberOfShops;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('startIndex', startIndex);
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`/api/shop/getshops?${searchQuery}`);
+    if (!res.ok) {
+      return;
+    }
+    if (res.ok) {
+      const data = await res.json();
+      setShops([...shops, ...data.shops]);
+      if (data.shops.length === 10) {
+        setShowMore(true);
+      } else {
+        setShowMore(false);
+      }
+    }
+  };
+
   return (
-    <div>
-    
-<div class="flex items-center justify-center md:py-8 flex-wrap bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)]">
-    <button type="button" onClick={() => setnum(0)} class="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">All categories</button>
-    <button type="button" onClick={() => setnum(1)} class="text-gray-900 border border-gray-500 hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 ">Electrical</button>
-    <button type="button" onClick={() => setnum(2)} class="text-gray-900 border border-gray-500 hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Mechanical</button>
-    <button type="button" onClick={() => setnum(3)} class="text-gray-900 border border-gray-500 hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Cleaning</button>
-    <button type="button" onClick={() => setnum(4)} class="text-gray-900 border border-gray-500 hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Beauty</button>
-    <button type="button" onClick={() => setnum(5)} class="text-gray-900 border border-gray-500 hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Carpentary</button>
-    <button type="button" onClick={() => setnum(6)} class="text-gray-900 border border-gray-500 hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Plumbing</button>
-</div>
-
-    <div className='max-w-11xl mx-auto p-3 flex flex-col gap-8 pb-4 justify-center items-center'>
-{(num===0) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"} price="$399" detail="This is a Amazing Product"/>
+    <div className='flex'>
+      {/* Sidebar */}
+      {sidebarVisible && (
+        <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
+          <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
+            <div className='flex items-center gap-2'>
+              <label className='whitespace-nowrap font-semibold'>Search Term:</label>
+              <TextInput
+                placeholder='Search...'
+                id='searchTerm'
+                type='text'
+                value={sidebarData.searchTerm}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center gap-2'>
+              <label className='font-semibold'>Sort by Price:</label>
+              <Select onChange={handleChange} value={sidebarData.sort} id='sort'>
+                <option value='dsc'>High-to-Low</option>
+                <option value='asc'>Low-to-High</option>
+              </Select>
+            </div>
+            <div className='flex items-center gap-2'>
+              <label className='font-semibold'>Category:</label>
+              <Select onChange={handleChange} value={sidebarData.category} id='category'>
+                <option value='uncategorized'>Uncategorized</option>
+                <option value='electrician'>Electrician</option>
+                <option value='plumber'>Plumber</option>
+                <option value='cleaner'>Cleaner</option>
+                <option value='mechanic'>Mechanic</option>
+                <option value='carpenter'>Carpenter</option>
+                <option value='beauticians'>Beauticians</option>
+              </Select>
+            </div>
+            <Button type='submit' outline gradientDuoTone='purpleToPink'>
+              Apply Filters
+            </Button>
+          </form>
         </div>
-        
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"} price="$299" detail="This is a Amazing Product"/>
+      )}
 
+      {/* Main content */}
+      <div className='w-full'>
+        {/* <Button
+          className='p-2 mt-2 ml-2'
+          onClick={() => setSidebarVisible(!sidebarVisible)}
+          outline
+          gradientDuoTone='purpleToPink'>
+          {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
+        </Button> */}
+        {/* <h1 className='text-3xl flex flex-row font-semibold text-center bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)] p-10 mt-0'>
+         <Button 
+          onClick={() => setSidebarVisible(!sidebarVisible)}
+          outline>
+          {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
+        </Button> 
+        </h1> */}
+        <h1 className='text-3xl flex flex-row font-semibold text-center bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)] p-10 mt-0'>
+  <Button 
+    onClick={() => setSidebarVisible(!sidebarVisible)}
+    outline>
+    {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
+  </Button>
+  <span className="flex-grow text-center">Products Section</span>
+</h1>
+        <div className='p-5 flex flex-wrap gap-5 justify-center'>
+          {!loading && shops.length === 0 && <p className='text-xl text-gray-500'>No result found.</p>}
+          {loading && <p className='text-xl text-gray-500'>Loading...</p>}
+          {!loading && shops && shops.map((shop) => <ProductCard2 key={shop._id} shop={shop} />)}
+          {showMore && (
+            <button onClick={handleShowMore} className='text-teal-500 text-lg hover:underline p-7 w-full'>
+              Show More
+            </button>
+          )}
         </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"} price="$199" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"} price="$399" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$200" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$499" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$89" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
+      </div>
     </div>
-)}
-{(num===1) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"../../Photos_coro/ele1.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/> */}
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/> */}
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"../../Photos_coro/ele2.jpg"} price="$300" detail="This is a Amazing Product"/>
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"../../Photos_coro/ele3.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"../../Photos_coro/ele4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-    </div>
-)}
-{(num===2) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/> */}
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"} price="$300" detail="This is a Amazing Product"/>
-        </div>
-        
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/> */}
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-    </div>
-)}
-{(num===3) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/> */}
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"} price="$300" detail="This is a Amazing Product"/>
-        </div>
-        
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/> */}
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-    </div>
-)}
-{(num===4) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div> 
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/> */}
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"} price="$300" detail="This is a Amazing Product"/>
-        </div>
-        
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/> */}
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-    </div>
-)}
-{(num===5) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div> 
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/> */}
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"} price="$300" detail="This is a Amazing Product"/>
-        </div>
-        
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/> */}
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-    </div>
-)}
-{(num===6) && (
-<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div> 
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/> */}
-            <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"} price="$300" detail="This is a Amazing Product"/>
-        </div>
-        
-        <div>
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/> */}
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-        <div>
-            {/* <img class="max-h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/> */}
-        <ProductCard class="max-h-auto max-w-40 rounded-lg" url={"https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"} price="$300" detail="This is a Amazing Product"/>
-
-        </div>
-    </div>
-)}
-</div>
-</div>
-);}
+  );
+}

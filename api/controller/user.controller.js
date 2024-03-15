@@ -203,63 +203,63 @@ export const updateUser = async (req, res, next) => {
     }
   };
 
-  // export const delnotice = async(req,res) =>{
-  //   try{
-  //     const notification=req.body.notification;
-  //     const user = await User.findOne({_id:req.body.userId});
-  //     notification=[];
-  //     const updatedUser = await user.save();
-  //     updatedUser.password = undefined;
-  //     req.status(200).send({
-  //       success:true,
-  //       message:"Notification Deleted Successfully",
-  //       data:updatedUser,
-  //     });
-  //   }
-  //   catch(error){
-  //     console.log(error);
-  //     req.status(500).send({
-  //       success:false,
-  //       message:"unable to delee all notification",
-  //       error,
-  //     });
-  //   }
-  // };
   export const delnotice = async(req,res) =>{
     try{
-      const { userId, notification } = req.body; // Get userId and notification from the request body
-      const user = await User.findOne({_id: userId});
-  
-      if (!user) {
-        return res.status(404).send({
-          success: false,
-          message: 'User not found',
-        });
-      }
-  
-      const index = user.notification.findIndex((n) => n === notification);
-      if (index === -1) {
-        return res.status(404).json({ success: false, message: "Notification not found" });
-      }
-  
-      // Remove the notification from the array
-      user.notification[index]=[];
-    
+      const notification=req.body.notification;
+      const user = await User.findOne({_id:req.body.userId});
+      notification=[];
       const updatedUser = await user.save();
       updatedUser.password = undefined;
-  
-      res.status(200).send({
-        success: true,
-        message: "Notification Deleted Successfully",
-        data: updatedUser,
+      req.status(200).send({
+        success:true,
+        message:"Notification Deleted Successfully",
+        data:updatedUser,
       });
     }
     catch(error){
-      console.error(error);
-      res.status(500).send({
-        success: false,
-        message: "Unable to delete notification",
+      console.log(error);
+      req.status(500).send({
+        success:false,
+        message:"unable to delee all notification",
         error,
       });
     }
   };
+  // export const delnotice = async(req,res) =>{
+  //   try{
+  //     const { userId, notification } = req.body; // Get userId and notification from the request body
+  //     const user = await User.findOne({_id: userId});
+  
+  //     if (!user) {
+  //       return res.status(404).send({
+  //         success: false,
+  //         message: 'User not found',
+  //       });
+  //     }
+  
+  //     const index = user.notification.findIndex((n) => n === notification);
+  //     if (index === -1) {
+  //       return res.status(404).json({ success: false, message: "Notification not found" });
+  //     }
+  
+  //     // Remove the notification from the array
+  //     user.notification[index]=[];
+    
+  //     const updatedUser = await user.save();
+  //     updatedUser.password = undefined;
+  
+  //     res.status(200).send({
+  //       success: true,
+  //       message: "Notification Deleted Successfully",
+  //       data: updatedUser,
+  //     });
+  //   }
+  //   catch(error){
+  //     console.error(error);
+  //     res.status(500).send({
+  //       success: false,
+  //       message: "Unable to delete notification",
+  //       error,
+  //     });
+  //   }
+  // };

@@ -2,28 +2,23 @@ import { Link } from 'react-router-dom';
 import { Button } from 'flowbite-react';
 import {Rating} from 'flowbite-react';
 import { FaStar } from 'react-icons/fa';
-export default function ProductCard({url,price,detail}) {
+export default function ProductCard2({ shop }) {
   return (
     
-
-//  <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-//     <a href="#">
-//         <img class="p-8 rounded-t-lg transition-transform duration-300 transform hover:scale-110" src={url} alt="product image" style={{width: '375px', height: '400px', objectFit: 'cover'  }}/>
-//     </a> 
-<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-<Link to="/Product" className="relative group">
+<div className="w-full max-w-sm bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<Link to={`/shop/${shop.slug}`} className="relative group">
   <div className="relative overflow-hidden group">
     <img
       className="p-8 rounded-t-lg transition-transform duration-300 transform group-hover:scale-105"
-      src={url}
+      src={shop.image}
       alt="product image"
-      style={{ width: '375px', height: '400px', objectFit: 'cover' }}
+      style={{ width: '375px', height: '400px' }}
     />
   </div>
 </Link>
     <div class="px-5 pb-5">
-        <a href="/">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{detail}</h5>
+        <a href="/Product">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{shop.title}</h5>
         </a>
         <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
@@ -46,7 +41,7 @@ export default function ProductCard({url,price,detail}) {
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">4.0</span>
         </div>
         <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">{price}</span>
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">${shop.price}</span>
             {/* <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</a> */}
             <Link to='/#'>
             <Button gradientDuoTone='purpleToBlue' outline >

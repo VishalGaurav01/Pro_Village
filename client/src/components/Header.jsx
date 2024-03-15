@@ -9,6 +9,7 @@ import { toggleTheme } from '../redux/theme/themeSlice';
 import { signoutSuccess } from '../redux/user/userSlice';
 
 export default function Header() {
+    const [searchstate,setsearchstate] = useState(0);
     const path = useLocation().pathname;
     const location = useLocation();
     const navigate = useNavigate();
@@ -25,13 +26,24 @@ export default function Header() {
       setSearchTerm(searchTermFromUrl);
     }
     },[location.search]);
-
+    useEffect(() => {
+      if (path !== '/shop') {
+          setsearchstate(null);
+      }
+  }, [path]);
     const handleSubmit = (e) => {
       e.preventDefault();
       const urlParams = new URLSearchParams(location.search);
       urlParams.set('searchTerm', searchTerm);
       const searchQuery = urlParams.toString();
       navigate(`/search?${searchQuery}`);
+    };
+    const handleSubmit2 = (e) => {
+      e.preventDefault();
+      const urlParams = new URLSearchParams(location.search);
+      urlParams.set('searchTerm', searchTerm);
+      const searchQuery = urlParams.toString();
+      navigate(`/shop?${searchQuery}`);
     };
   
     const notificationCount = currentUser?.notification.length;
@@ -62,16 +74,28 @@ export default function Header() {
         </span>
         Village
       </Link>
+      {searchstate?
+      <form onSubmit={handleSubmit2}>
+        <TextInput
+          type='text'
+          placeholder='Search Products...'
+          rightIcon={AiOutlineSearch}
+          className='hidden lg:inline'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </form>:
       <form onSubmit={handleSubmit}>
         <TextInput
           type='text'
-          placeholder='Search...'
+          placeholder='Search Services...'
           rightIcon={AiOutlineSearch}
           className='hidden lg:inline'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
+      }
       <Button className='w-12 h-11 lg:hidden' color='gray' pill>
         <AiOutlineSearch />
       </Button>
@@ -118,7 +142,6 @@ export default function Header() {
             <Dropdown.Item> Sign Out</Dropdown.Item>
             </Link>
           </Dropdown>
-          
         ):
         (
           <Link to='/signin'>
@@ -150,8 +173,8 @@ export default function Header() {
             <Navbar.Link active={path==="/"} as={'div'} >
             <Link to='/'>Home</Link>
             </Navbar.Link>
-            <Navbar.Link active={path === '/Project'} as={'div'}>
-            <Link to='/Project'>Shop</Link>
+            <Navbar.Link active={path === '/shop'} as={'div'} onClick={(e)=>{setsearchstate(1)}}>
+            <Link to='/shop'>Shop</Link>
             </Navbar.Link>
             <Navbar.Link active={path === '/Create-post'} as={'div'}>
             <Link to='/Create-post'>Apply Service</Link>

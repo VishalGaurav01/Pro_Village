@@ -117,10 +117,12 @@ export default function CreatePost()
     }
   };
     return (
-<div className='p-3 max-w-3xl mx-auto min-h-screen '>
+      <div>
+{/* <div className="absolute left-0 py-12 top-10 w-full bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)] "></div> */}
+<div className='p-3 max-w-3xl mx-auto min-h-screen' style={{ zIndex: -1 }}>
     {(!currentUser.isProvider || currentUser.isAdmin || userPosts.length==0)?
           (<>
-            <h1 className='text-center text-3xl my-7 font-semibold'>Application Form</h1>
+            <h1 className='text-center text-3xl my-7 font-semibold' style={{ zIndex: 10 }}>Application Form</h1>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
           <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput
@@ -231,4 +233,5 @@ export default function CreatePost()
           (<Alert className='mt-2' color='failure'>
           You have already created a Profile
           </Alert>)}
+</div>
 </div>)}

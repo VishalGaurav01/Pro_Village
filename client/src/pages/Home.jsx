@@ -93,7 +93,7 @@ const [posts, setPosts] = useState([]);
       </div>
     </div>
     <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
-      <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
+      <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
   </div>
 </div>
@@ -115,7 +115,7 @@ const [posts, setPosts] = useState([]);
         </div>
     </div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
-          <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
+          <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@ const [posts, setPosts] = useState([]);
       </div>
     </div>
     <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
-      <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
+      <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
   </div>
     <div class="absolute top-0 right-0 bg-red-500 text-white w-8 h-8 flex justify-center items-center rounded-full">
@@ -162,7 +162,7 @@ const [posts, setPosts] = useState([]);
       </div>
     </div>
     <div class="text-sm font-medium text-gray-500  dark:text-gray-300 p-3">
-      <a href="/Project" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
+      <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
   </div>
     <div class="absolute top-0 right-0  bg-blue-500 text-white py-1 px-4 rounded-lg transform -rotate-[0deg]">
@@ -281,9 +281,9 @@ const [posts, setPosts] = useState([]);
     </div>
 </div>
 <h2 className='text-2xl font-semibold text-center mt-10 hover:text-teal-500'>Upcoming Services</h2>
-<div className='flex flex-row justify-center gap-4 my-6 sm:flex sm:flex-wrap sm:justify-center'>
+<div className='flex flex-col justify-center sm:flex-row sm:gap-6 my-6 '>
 
-{mode?<div role="status" class=" max-w-sm ml-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)]">
+{mode?<div role="status" class=" absolute max-w-sm ml-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)] left-9">
     <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-4 mt-3">
         
             <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>
@@ -318,7 +318,7 @@ const [posts, setPosts] = useState([]);
     <div className='"pt-16'></div>
 </div>
 
-<div role="status" className="w-full max-w-sm ml-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]">
+<div role="status" className="w-full max-w-sm ml-1 bg-white border  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]">
 <Link onClick={() => {mode1?setmode1(0):setmode1(1)}} className="relative group">
   <div className="relative overflow-hidden group">
     <img
@@ -339,7 +339,7 @@ const [posts, setPosts] = useState([]);
     </div>
 </div>
 
-{(mode1) ? (<div role="status" class=" max-w-sm mr-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)]">
+{(mode1) ? (<div role="status" class=" absolute right-9 max-w-sm mr-2 my-2 p-4 md:flex-1 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)]">
     <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-4 mt-3">
         
             <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>

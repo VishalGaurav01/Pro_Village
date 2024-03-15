@@ -14,9 +14,7 @@ export default function Search() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
-
   const location = useLocation();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -148,7 +146,7 @@ export default function Search() {
         <h1 className='text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 '>
           Search Results:
         </h1>
-        <div className='p-7 flex flex-wrap gap-8 '>
+        <div className='p-7 flex flex-wrap gap-8 justify-center '>
           {!loading && posts.length === 0 && (
             <p className='text-xl text-gray-500'>No result found.</p>
           )}

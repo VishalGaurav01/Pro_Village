@@ -73,7 +73,7 @@ export default function DashSidebar() {
                   icon={HiDocumentText}
                   as='div'
                 >
-                  Service Profiles
+                  Services
                 </Sidebar.Item>
               </Link>
             )}
@@ -90,6 +90,19 @@ export default function DashSidebar() {
             )}
             {(currentUser.isAdmin )&& (
               <>
+                <Link to='/dashboard?tab=products'>
+                  <Sidebar.Item
+                    active={tab === 'products'}
+                    icon={HiOutlineUserGroup}
+                    as='div'
+                  >
+                    Products
+                  </Sidebar.Item>
+                </Link>
+              </>
+            )}
+            {(currentUser.isAdmin )&& (
+              <>
                 <Link to='/dashboard?tab=users'>
                   <Sidebar.Item
                     active={tab === 'users'}
@@ -99,7 +112,6 @@ export default function DashSidebar() {
                     Users
                   </Sidebar.Item>
                 </Link>
-                
                  {/* <Link to='/dashboard?tab=comments'>
                   <Sidebar.Item
                     active={tab === 'comments'}
@@ -111,6 +123,7 @@ export default function DashSidebar() {
                 </Link> */}
               </>
             )}
+
             <Sidebar.Item
               icon={HiArrowSmRight}
               className='cursor-pointer'
