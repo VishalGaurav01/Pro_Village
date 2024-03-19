@@ -312,27 +312,14 @@ export default function Search() {
 
       {/* Main content */}
       <div className='w-full'>
-        {/* <Button
-          className='p-2 mt-2 ml-2'
-          onClick={() => setSidebarVisible(!sidebarVisible)}
-          outline
-          gradientDuoTone='purpleToPink'>
-          {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
-        </Button> */}
-        {/* <h1 className='text-3xl flex flex-row font-semibold text-center bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)] p-10 mt-0'>
-         <Button 
-          onClick={() => setSidebarVisible(!sidebarVisible)}
-          outline>
-          {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
-        </Button> 
-        </h1> */}
+       
         <h1 className='text-3xl flex flex-row font-semibold text-center bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)] p-10 mt-0'>
   <Button 
     onClick={() => setSidebarVisible(!sidebarVisible)}
     outline>
     {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
   </Button>
-  <span className="flex-grow text-center">Products Section</span>
+  <span className="flex-grow text-center">Product Section</span>
 </h1>
         <div className='p-5 flex flex-wrap gap-5 justify-center'>
           {!loading && shops.length === 0 && <p className='text-xl text-gray-500'>No result found.</p>}

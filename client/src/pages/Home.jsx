@@ -49,49 +49,39 @@ const [posts, setPosts] = useState([]);
       <div className=' flex flex-col gap-6 p-20 mb-10  px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
         <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>
-              Pro
-        </span>Village</h1>
-        {/* <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
-  <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700 typing-animation'>
-    Pro
-  </span>
-  <span id="typing-text" className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>Village</span>
-</h1> */}
-{/* <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
-  <span id="typing-text" className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'></span>
-</h1> */}
-{/* <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
-  <span id="typing-text" className='text-3xl font-bold lg:text-6xl'></span>
-</h1> */}
-        <p className='text-gray-500 text-xs sm:text-sm'>
-          Here you'll find a variety of articles and tutorials on topics such as
-          web development, software engineering, and programming languages.
+              City
+        </span>Service</h1>
+        <p className=' text-xs  sm:text-sm '>
+        An online platform that connected service professionals such as plumbers, 
+        electricians, beauticians, and others with customers in need of those services.
         </p>
         <Link
           to='/search'
-          className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'>
-          View all Profiles
+          className='text-xs sm:text-sm font-bold hover:underline'>
+          View all Profiles 
         </Link>
       </div>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
 
 <div class="flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] dark:bg- rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)]  rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Keep Searching for</h5>
+
     <div class="grid grid-cols-2 gap-2">
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-      </div>
-    </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+  </div>
+</div>
+
     <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
       <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
@@ -100,7 +90,7 @@ const [posts, setPosts] = useState([]);
 <div class="flex justify-center items-center h-full">
     <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Categories to Explore</h5>
-        <div class="grid grid-cols-2 gap-2">
+        {/* <div class="grid grid-cols-2 gap-2">
         <div className='h-44'>
             <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
         </div>
@@ -113,7 +103,21 @@ const [posts, setPosts] = useState([]);
         <div className='h-44'>
             <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
         </div>
-    </div>
+    </div> */}
+    <div class="grid grid-cols-2 gap-2">
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+  </div>
+</div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
           <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
         </div>
@@ -122,7 +126,7 @@ const [posts, setPosts] = useState([]);
 <div class="relative flex justify-center items-center h-full">
   <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3"> Up to 60% off</h5>
-    <div class="grid grid-cols-2 gap-2">
+    {/* <div class="grid grid-cols-2 gap-2">
       <div className='h-44'>
         <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
       </div>
@@ -135,7 +139,20 @@ const [posts, setPosts] = useState([]);
       <div className='h-44'>
         <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
       </div>
-    </div>
+    </div> */}<div class="grid grid-cols-2 gap-2">
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+  </div>
+</div>
     <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
       <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>
@@ -147,7 +164,7 @@ const [posts, setPosts] = useState([]);
 <div class="relative flex justify-center items-center h-full">
   <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Deal of the Day</h5>
-    <div class="grid grid-cols-2 gap-2">
+    {/* <div class="grid grid-cols-2 gap-2">
       <div className='h-44'>
         <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
       </div>
@@ -160,7 +177,21 @@ const [posts, setPosts] = useState([]);
       <div className='h-44'>
         <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
       </div>
-    </div>
+    </div> */}
+    <div class="grid grid-cols-2 gap-2">
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+  </div>
+</div>
     <div class="text-sm font-medium text-gray-500  dark:text-gray-300 p-3">
       <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
     </div>

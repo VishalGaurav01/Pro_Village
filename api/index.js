@@ -5,6 +5,7 @@ import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import postRoutes from './routes/post.route.js';
 import shopRoutes from './routes/shop.route.js';
+import cartRoutes from './routes/cart.route.js';
 import cookieParser from 'cookie-parser';
 dotenv.config();
 mongoose.connect(process.env.MONGODB)
@@ -19,7 +20,7 @@ app.use(cookieParser());
 app.listen(3000,()=>{
     console.log('Server is running on port 3000!')
 })
-
+app.use('/api/cart',cartRoutes);
 app.use('/api/user',userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);

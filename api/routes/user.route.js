@@ -1,5 +1,5 @@
 import express  from "express";
-import { test, updateUser,signout, getUsers, sendnotice, getnotice,delnotice } from "../controller/user.controller.js";
+import { test, updateUser,signout, getUsers, sendnotice, getnotice,delnotice, acceptNotice } from "../controller/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 import { deleteUser } from "../controller/auth.contoller.js";
 
@@ -13,5 +13,5 @@ router.get('/getusers',verifyToken,getUsers);
 router.get('/get-all-notify',verifyToken, getnotice);
 router.delete('/delete-notify',verifyToken, delnotice);
 router.post('/apply-notify',verifyToken, sendnotice);
-
+router.post('/accept-notify',verifyToken, acceptNotice);
 export default router; 

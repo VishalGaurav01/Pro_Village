@@ -5,6 +5,6 @@ import { create, deleteshop, getshops, updateshop} from '../controller/shop.cont
 const router = express.Router();
 router.post('/create', verifyToken, create);
 router.get('/getshops', getshops);
-router.delete('/deleteshop/:postId/:userId', verifyToken, deleteshop);
+router.delete('/deleteshop/:shopId/:userId', verifyToken, deleteshop);
 router.put('/updateshop/:shopId/:userId', verifyToken, updateshop);
 export default router;

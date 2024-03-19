@@ -1,46 +1,98 @@
 import { Modal, Table, Button , Alert} from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+// import { deleteUserNotification } from '../redux/user/userSlice';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
-
+// import { updateSuccess } from '../redux/user/userSlice';
 export default function Notice() {
   const { currentUser } = useSelector((state) => state.user);
   const [notificationToDelete, setNotificationToDelete] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showAccept, setShowAccept] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
 
   const handleDelete = async () => {
     try {
       setShowModal(false);
-      const res = await fetch(
-        `/api/user/delete-notify`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId: currentUser._id,
-            notification: notificationToDelete, // Pass the notification to delete
-          }),
+      
+      if (notificationToDelete) {
+        const res = await fetch(
+          `/api/user/delete-notify`,
+          {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userId: currentUser._id,
+              notificationId: notificationToDelete._id, // Pass the notification ID to delete
+            }),
+          }
+        );
+        const data = await res.json();
+        if (!res.ok) {
+          console.error(data.message);
+        } else {
+          console.log('Notification deleted successfully');
+          // dispatch(deleteUserNotification(notificationToDelete._id));
         }
-      );
-      const data = await res.json();
-      if (!res.ok) {
-        console.error(data.message);
+      // dispatch(updateSuccess(updatedCurrentUser));
+
       } else {
-        console.log('Notification deleted successfully');
+        console.error('Notification to delete is null');
       }
     } catch (error) {
       console.error(error.message);
     }
   };
-  const handleSubmit = async () => {}
- 
+  
+  const handleSubmit = async () => {
+    try {
+      if (!currentUser || !currentUser.username || !notificationToDelete) {
+        console.error('User data is missing or invalid');
+        return;
+      }
+  
+      setLoading(true);
+  
+      const currentDate = new Date();
+      const dateTimeString = currentDate.toLocaleString('en-IN');
+  
+      const res = await fetch('/api/user/accept-notify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: notificationToDelete.data.userId,
+          fore: notificationToDelete.data.fore,
+          currentUse: currentUser.username,
+          sendId: currentUser._id,
+          datetime: dateTimeString,
+        }),
+      });
+  
+      if (!res.ok) {
+        setError(true);
+      } else {
+        setError(false);
+      }
+  
+      setLoading(false);
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+      console.error('Error in handleSubmit:', error);
+    }
+  };
+  
   return (
     <div className='table-auto overflow-x-scroll  md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
-      {currentUser.notification.length>0 ? (
+      {currentUser?.notification?.length>0 ? (
         <><Table hoverable className='shadow-md'>
   <Table.Head>
   <Table.HeadCell>Date & Time</Table.HeadCell>
@@ -52,36 +104,36 @@ export default function Notice() {
   </Table.Head>
   <Table.Body className='divide-y'>
     {currentUser.notification.map((notification, index) => (
-      
       <Table.Row key={index} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-      <Table.Cell>{notification.data ? notification.data.datetime : 'N/A'}</Table.Cell>
-      <Table.Cell>{notification.message}</Table.Cell>
-        <Table.Cell>{notification.data ? notification.data.fore : 'N/A'}</Table.Cell>
-        <Table.Cell>{notification.data ? notification.data.userId : 'N/A'}</Table.Cell>
-        <Table.Cell>
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setNotificationToDelete(notification);
-                      }}
-                      className='font-medium text-red-500 hover:underline cursor-pointer'
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <span
-                      onClick={() => {
-                        setShowAccept(true);
-                      }}
-                      className='font-medium text-blue-500 hover:underline cursor-pointer'
-                    >
-                      Accept/Decline
-                    </span>
-                  </Table.Cell>
-        {/* <Table.Cell> */}
-      </Table.Row>
+  <Table.Cell>{notification.data ? notification.data.datetime : 'N/A'}</Table.Cell>
+  <Table.Cell>{notification.message}</Table.Cell>
+  <Table.Cell>{notification.data ? notification.data.fore : 'N/A'}</Table.Cell>
+  <Table.Cell>{notification.data ? notification.data.userId : 'N/A'}</Table.Cell>
+  <Table.Cell>
+    <span
+      onClick={() => {
+        setNotificationToDelete(notification);
+        setShowModal(true);
+      }}
+      className='font-medium text-red-500 hover:underline cursor-pointer'
+    >
+      Delete
+    </span>
+  </Table.Cell>
+  <Table.Cell>
+    <span
+      onClick={() => {
+        setNotificationToDelete(notification);
+        setShowAccept(true);
+      }}
+      className='font-medium text-blue-500 hover:underline cursor-pointer'
+    >
+      Accept/Decline
+    </span>
+  </Table.Cell>
+</Table.Row>
     ))}
+     
   </Table.Body>
 </Table>
         </>

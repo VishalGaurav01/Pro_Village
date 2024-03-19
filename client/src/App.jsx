@@ -16,6 +16,8 @@ import Notice from './pages/Notice'
 import Search from './pages/Search'
 import ProductPage from './pages/ProductPage'
 import CreateShop from './pages/CreateShop'
+import Cart from './pages/Cart'
+import Payment from './pages/Payment'
 
 export default function Main() {
   return (
@@ -29,6 +31,8 @@ export default function Main() {
         <Route path="/Create-post" element={<CreatePost />}/>
         <Route path="/updatepost/:postId" element={<UpdatePost />}/>
         <Route path="/notification" element={<Notice/>}/>
+        <Route path="/cart" element={<Cart/>}/>
+
         </Route>
         <Route element={<OnlyAdminPrivateRoute/>}>
         <Route path="/Create-shop" element={<CreateShop/>}/>
@@ -39,6 +43,9 @@ export default function Main() {
         <Route path="/shop" element={<Projects />}/>
         <Route path="/shop/:shopSlug" element={<ProductPage />}/>
         <Route path='/post/:postSlug' element={<PostPage/>}/>
+        <Route path='/payment' element={<Payment/>}/>
+        
+
       </Routes>
       <Footer/>
     </BrowserRouter>

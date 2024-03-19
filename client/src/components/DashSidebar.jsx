@@ -66,6 +66,18 @@ export default function DashSidebar() {
                 Profile
               </Sidebar.Item>
             </Link>
+            {currentUser && currentUser.isAdmin && (
+            <Link to='/dashboard?tab=dash'>
+              <Sidebar.Item
+                active={tab === 'dash' || !tab}
+                icon={HiChartPie}
+                as='div'
+              >
+                Dashboard
+              </Sidebar.Item>
+            </Link>
+          )}
+            
             {(currentUser.isAdmin) && (
               <Link to='/dashboard?tab=posts'>
                 <Sidebar.Item

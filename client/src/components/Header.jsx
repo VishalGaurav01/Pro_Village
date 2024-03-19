@@ -2,7 +2,7 @@ import { Avatar, Button, Dropdown, Navbar, NavbarToggle, TextInput } from 'flowb
 import React, { useEffect, useState } from 'react'
 import { Link , useLocation , useNavigate } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai';
-import {FaMoon , FaSun , FaBell} from 'react-icons/fa'
+import {FaMoon , FaSun , FaBell, FaCartArrowDown} from 'react-icons/fa'
 import {useSelector , useDispatch} from 'react-redux'
 import { toggleTheme } from '../redux/theme/themeSlice';
 // import { urlencoded } from 'express';
@@ -15,7 +15,7 @@ export default function Header() {
     const navigate = useNavigate();
     const Dispatch = useDispatch();
     const {currentUser} = useSelector(state =>state.user)
-    const [userPosts, setUserPosts] = useState('');
+    const [userCarts, setUserCarts] = useState([]);
     const {theme} = useSelector((state)=>state.theme);
     const [searchTerm , setSearchTerm] = useState('');
 // console.log(searchTerm);
@@ -31,6 +31,23 @@ export default function Header() {
           setsearchstate(null);
       }
   }, [path]);
+  useEffect(() => {
+    const fetchCarts = async () => {
+      try {
+        const res = await fetch(`/api/cart/getcarts?userId=${currentUser._id}`);
+        const data = await res.json();
+        if (res.ok) {
+          setUserCarts(data.carts);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    
+      fetchCarts();
+
+  }, [currentUser?._id]);
+
     const handleSubmit = (e) => {
       e.preventDefault();
       const urlParams = new URLSearchParams(location.search);
@@ -46,7 +63,8 @@ export default function Header() {
       navigate(`/shop?${searchQuery}`);
     };
   
-    const notificationCount = currentUser?.notification.length;
+    const notificationCount = currentUser?.notification?.length || 0;
+    const vale = userCarts?.length || 0;
     const handleSignout = async () => {
       try {
         const res = await fetch('/api/user/signout', {
@@ -70,9 +88,9 @@ export default function Header() {
         to='/'
         className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
         <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>
-          Pro
+          City
         </span>
-        Village
+        Service
       </Link>
       {searchstate?
       <form onSubmit={handleSubmit2}>
@@ -111,6 +129,17 @@ export default function Header() {
     )}
     </div>
       </Link>
+      <Link to='/cart'> 
+  <div className='relative'>
+    <Button className='w-12 h-11 ' color='gray' pill >
+      <FaCartArrowDown />
+    </Button>
+    {userCarts?.length > 0 && currentUser && (
+      <span className='absolute top-0 right-0 inline-block bg-red-500 text-white rounded-full px-2 py-1 custom-text-sm'>{vale}</span>
+    )}
+  </div>
+</Link>
+
         <Button
           className='w-12 h-11 hidden sm:inline'
           color='gray'

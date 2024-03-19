@@ -53,6 +53,21 @@ const userSlice = createSlice({
         state.error = null;
         state.loading = false;
       },
+      // deleteUserNotification: (state, action) => {
+      //   if (state.currentUser) {
+      //     state.currentUser.notification = state.currentUser.notification.filter(
+      //       notification => notification._id !== action.payload
+      //     );
+      //   }
+      // }
+      deleteUserNotification: (state, action) => {
+        if (state.currentUser && state.currentUser.notification) {
+          const notificationId = action.payload; // Access the notification ID from the action payload
+          state.currentUser.notification = state.currentUser.notification.filter(
+            (notification) => notification._id !== notificationId
+          );
+        }
+      },
     }}
     )
 
@@ -62,7 +77,7 @@ const userSlice = createSlice({
         signInFailure,
         updateFailure,updateStart,updateSuccess,deleteUserStart,
         deleteUserSuccess,
-        deleteUserFailure, signoutSuccess
+        deleteUserFailure, signoutSuccess, deleteUserNotification
     } = userSlice.actions;
 
     export default userSlice.reducer;

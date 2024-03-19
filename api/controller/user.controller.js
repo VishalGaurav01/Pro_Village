@@ -37,6 +37,8 @@ export const updateUser = async (req, res, next) => {
       if (req.body.isProvider !== undefined) {
         // Update isProvider field if included in the request body
         req.body.isProvider = true; // Assuming the value is set to true when submitting the form
+            // notification: req.body.notification,
+
       }  
       const updatedUser = await User.findByIdAndUpdate(
         req.params.userId,
@@ -101,9 +103,7 @@ export const updateUser = async (req, res, next) => {
       });
   
       const totalUsers = await User.countDocuments();
-  
       const now = new Date();
-  
       const oneMonthAgo = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
@@ -203,63 +203,135 @@ export const updateUser = async (req, res, next) => {
     }
   };
 
-  export const delnotice = async(req,res) =>{
-    try{
-      const notification=req.body.notification;
-      const user = await User.findOne({_id:req.body.userId});
-      notification=[];
+  export const delnotice = async (req, res) => {
+    try {
+      const { userId, notificationId } = req.body; // Get userId and notificationId from the request body
+      const user = await User.findOne({ _id: userId });
+  
+      if (!user) {
+        return res.status(404).send({
+          success: false,
+          message: 'User not found',
+        });
+      }
+  
+      // Find the index of the notification by its ID
+      const index = user.notification.findIndex((n) => n._id === notificationId);
+      if (index === -1) {
+        return res.status(404).json({ success: false, message: "Notification not found" });
+      }
+  
+      // Remove the notification from the array
+      user.notification.splice(index, 1);
+  
       const updatedUser = await user.save();
       updatedUser.password = undefined;
-      req.status(200).send({
-        success:true,
-        message:"Notification Deleted Successfully",
-        data:updatedUser,
+  
+      res.status(200).send({
+        success: true,
+        message: "Notification Deleted Successfully",
+        data: updatedUser,
       });
-    }
-    catch(error){
-      console.log(error);
-      req.status(500).send({
-        success:false,
-        message:"unable to delee all notification",
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        success: false,
+        message: "Unable to delete notification",
         error,
       });
     }
   };
-  // export const delnotice = async(req,res) =>{
-  //   try{
-  //     const { userId, notification } = req.body; // Get userId and notification from the request body
-  //     const user = await User.findOne({_id: userId});
   
+  // export const acceptNotice = async (req, res) => {
+  //   const { userId, notificationId } = req.body;
+  //   try {
+  //     const user = await User.findById(userId);
   //     if (!user) {
-  //       return res.status(404).send({
-  //         success: false,
-  //         message: 'User not found',
-  //       });
+  //       return res.status(404).json({ message: 'User not found' });
+  //     }
+      
+  //     // Find the notification in the user's notifications array
+  //     const notificationIndex = user.notification.findIndex(notification => notification._id.toString() === notificationId);
+  //     if (notificationIndex === -1) {
+  //       return res.status(404).json({ message: 'Notification not found' });
   //     }
   
-  //     const index = user.notification.findIndex((n) => n === notification);
-  //     if (index === -1) {
-  //       return res.status(404).json({ success: false, message: "Notification not found" });
-  //     }
+  //     // Move the notification from the notifications array to the seennotification array
+  //     const notification = user.notification.splice(notificationIndex, 1)[0];
+  //     user.seennotification.push(notification);
   
-  //     // Remove the notification from the array
-  //     user.notification[index]=[];
-    
-  //     const updatedUser = await user.save();
-  //     updatedUser.password = undefined;
+  //     // Save the updated user document
+  //     await user.save();
   
-  //     res.status(200).send({
-  //       success: true,
-  //       message: "Notification Deleted Successfully",
-  //       data: updatedUser,
-  //     });
-  //   }
-  //   catch(error){
+  //     return res.status(200).json({ message: 'Notification accepted successfully' });
+  //   } catch (error) {
   //     console.error(error);
-  //     res.status(500).send({
-  //       success: false,
-  //       message: "Unable to delete notification",
-  //       error,
-  //     });
+  //     return res.status(500).json({ message: 'Internal server error' });
   //   }
   // };
+//   export const acceptNotice = async (req, res) => {
+//     try {
+//     const { userId, notificationId } = req.body;
+//         if (!notificationId) {
+//           console.log(notificationId);
+//             return res.status(400).json({ message: 'Notification ID is required' });
+//         }
+
+//         const user = await User.findById(userId);
+//         if (!user) {
+//             return res.status(404).json({ message: 'User not found' });
+//         }
+        
+//         // Find the notification in the user's notifications array
+//         const notificationIndex = user.notification.findIndex(notification => notification._id.toString() === notificationId);
+//         if (notificationIndex === -1) {
+//             return res.status(404).json({ message: 'Notification not found' });
+//         }
+    
+//         // Move the notification from the notifications array to the seennotification array
+//         const notification = user.notification.splice(notificationIndex, 1)[0];
+//         user.seennotification.push(notification);
+    
+//         // Save the updated user document
+//         await user.save();
+    
+//         return res.status(200).json({ message: 'Notification accepted successfully' });
+//     } catch (error) {
+//         console.error(error);
+//         return res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
+export const acceptNotice = async (req, res) => {
+  const { userId, currentUse, sendId, fore, datetime } = req.body;
+
+  try {
+    // Find the user by userId
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Add the request details to the user's document
+    user.notification.push({
+      type: 'Apply for service',
+      message: `${currentUse} accepted your request for service of ${fore}`,
+      data: {
+        datetime: datetime,
+        userId: sendId,
+        name: currentUse,
+        onClickPath: '/user/pend',
+        fore: fore,
+      },
+    });
+
+    // Save the updated user document
+    await user.save();
+
+    res.json({ message: 'Request sent successfully' });
+  } catch (error) {
+    console.error('Error sending request:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};

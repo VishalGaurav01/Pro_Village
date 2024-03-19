@@ -6,7 +6,9 @@ import { Link, useParams } from 'react-router-dom';
 // import CallToAction from '../components/CalltoAction';
 // import CommentSection from '../components/CommentSection';
 import PostCard from '../components/PostCard';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+// import { UseDispatch } from 'react-redux';
+// import { updateSuccess } from '../redux/user/userSlice';
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -16,6 +18,7 @@ export default function PostPage() {
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState(null);
   const [recent, setrecent]= useState(true);
+  // const dispatch = useDispatch();
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
@@ -50,6 +53,7 @@ const handleSubmit = async (e) => {
     if (res.ok) {
       setLoading(false);
       setError(false);
+      // dispatch(updateSuccess(currentUser));
     }
 } catch (error) {
   setError(true);
@@ -103,8 +107,8 @@ const handleSubmit = async (e) => {
       </div>
     );
   return (
-    <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
-      <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
+    <main className='p-3 flex flex-col max-w-7xl mx-auto min-h-screen h-3/4'>
+      <h1 className='text-4xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
         Service Profile 
       </h1>
       <Link
@@ -118,20 +122,20 @@ const handleSubmit = async (e) => {
       
       <div className='flex flex-col mt-4 sm:flex-row p-3 border border-teal-500 justify-center items-center  text-center'>
         <div className="flex-1 justify-center flex flex-col">
-        <h2 className='text-2xl text-left ml-20 pl-20' >
+        <h2 className='text-3xl ' >
             Name: {post && post.title}
             </h2>
-            <h2 className='text-2xl text-left ml-20 pl-20' >
+            <h2 className='text-3xl ' >
             City: {post && post.city}
             </h2>
-            <h2 className='text-2xl text-left ml-20 pl-20'>
-            Price: 300 
+            <h2 className='text-3xl'>
+            Price: $399 
             </h2>
-            <h2 className='text-2xl text-left ml-20 pl-20'>
+            <h2 className='text-3xl '>
             Contact : {post && post.ifsc}
             </h2>
             <div
-        className='p-3 max-w-2xl mx-auto w-full post-content'
+        className='p-3 max-w-3xl mx-auto w-full post-content'
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
             <Button onClick={
@@ -142,7 +146,7 @@ const handleSubmit = async (e) => {
                 
             </Button>
         </div>
-        <div className="p-7 flex-1 object-cover overflow-hidden">
+        <div className="p-7 flex-1 object-cover overflow-hidden h-full">
             <img src={post && post.image}
         alt={post && post.title} />
         </div>
@@ -153,23 +157,17 @@ const handleSubmit = async (e) => {
           {post && (post.content.length / 1000).toFixed(0)} mins read
         </span>
       </div>
-      
-      {/* <div
-        className='p-3 max-w-2xl mx-auto w-full post-content'
-        dangerouslySetInnerHTML={{ __html: post && post.content }}
-      ></div> */}
-      {/* <div className='max-w-4xl mx-auto w-full'>
-        <CallToAction />
-      </div> */}
-      {/* <CommentSection postId={post._id} /> */}
-
-      <div className='flex flex-col justify-center items-center mb-5'>
-        <h1 className='text-xl mt-5'>Related Profiles</h1>
-        <div className='flex flex-row gap-5 mt-5 justify-center '>
-          {recentPosts &&
-            recentPosts.map((post) => <PostCard key={post._id} post={post} />)}
+<div className='max-w-7xl mx-auto px-4 mb-5'>
+  <h1 className='text-xl my-5 text-center'>Related Profiles</h1>
+  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4'>
+    {recentPosts &&
+      recentPosts.map((post) => (
+        <div key={post._id} className='flex justify-center'>
+          <PostCard post={post} />
         </div>
-      </div>
+      ))}
+  </div>
+</div>
     </main>
   );
 }

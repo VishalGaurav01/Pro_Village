@@ -7,11 +7,12 @@ import {CircularProgressbar} from 'react-circular-progressbar';
 import {getStorage , ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 import 'react-circular-progressbar/dist/styles.css';
 import {useNavigate} from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { updateSuccess } from "../redux/user/userSlice";
 export default function CreatePost() 
 {
   const navigate =useNavigate();
+  const dispatch = useDispatch();
   const [imageUploadProgress,setimageUploadProgress] =useState(null);
   const [imageUploadError,setimageUploadError] =useState(null);
   const[file,setfile] = useState(null);
@@ -33,7 +34,7 @@ export default function CreatePost()
     };
 
     fetchUserPosts();
-  }, [currentUser.id]);
+  }, [currentUser._id]);
 
 
 
@@ -81,7 +82,6 @@ export default function CreatePost()
     try {
       const updatedCurrentUser = { ...currentUser, isProvider: true };
 
-    // Make the API call to update the currentUser object
     const updateRes = await fetch(`/api/user/update/${currentUser._id}`, {
       method: 'PUT',
       headers: {
@@ -94,7 +94,9 @@ export default function CreatePost()
     if (!updateRes.ok) {
       throw new Error(updateData.message);
     }
-    
+    else{
+      dispatch(updateSuccess(updatedCurrentUser));
+    }
       const res = await fetch('/api/post/create', {
         method: 'POST',
         headers: {
@@ -110,6 +112,7 @@ export default function CreatePost()
 
       if (res.ok) {
         setPublishError(null);
+        // dispatch(updateSuccess(updatedCurrentUser));
         navigate(`/post/${data.slug}`);
       }
     } catch (error) {

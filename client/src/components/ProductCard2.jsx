@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 import { Button } from 'flowbite-react';
 import {Rating} from 'flowbite-react';
 import { FaStar } from 'react-icons/fa';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function ProductCard2({ shop }) {
+  const navigate = useNavigate();
+  const [price, setprice] = useState(shop.price);
   return (
     
 <div className="w-full max-w-sm bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -17,9 +21,11 @@ export default function ProductCard2({ shop }) {
   </div>
 </Link>
     <div class="px-5 pb-5">
-        <a href="/Product">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{shop.title}</h5>
-        </a>
+    <div className='flex flex-row justify-between'>
+    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{shop.title}</h5>
+    <h6 class="font-semibold tracking-tight text-gray-900 dark:text-white">[{shop.brand}]</h6>
+    </div>
+        
         <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                 <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -42,12 +48,11 @@ export default function ProductCard2({ shop }) {
         </div>
         <div class="flex items-center justify-between">
             <span class="text-3xl font-bold text-gray-900 dark:text-white">${shop.price}</span>
-            {/* <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</a> */}
-            <Link to='/#'>
-            <Button gradientDuoTone='purpleToBlue' outline >
-              Buy Now
-            </Button>
-            </Link>
+          <Button onClick={
+            ()=>{navigate('/payment',{replace: true ,state: { price:price }});}
+          } gradientDuoTone='purpleToBlue' outline>
+            Buy Now
+          </Button>
         </div>
     </div>
 </div>
