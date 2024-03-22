@@ -22,51 +22,18 @@ const [posts, setPosts] = useState([]);
     };
     fetchPosts();
   }, []);
-  // const text = 'Pro Village';
-  // let index = 0;
-  // const typingText = document.getElementById('typing-text');
-  
-  // function typeCharacters() {
-  //   typingText.textContent = text.slice(0, index);
-  //   index = (index + 1) % (text.length + 1);
-  // }
-  
-  // setInterval(typeCharacters, 10);
 
   return (
     <div>
-      {/* <div className=' mb-3 border rounded-lg border-teal-500 dark:border-slate-700 w-full max-h-full'>
-      <Corousal/>
-      </div> */}
+
       <div className='w-full h-full bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]'>
-      {/* <div className=' flex flex-col gap-6 p-20 mb-10  px-3 max-w-6xl mx-auto '>
-        <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
-        <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>
-              City
-        </span>Service</h1>
-        <p className=' text-xs  sm:text-sm '>
-        An online platform that connected service professionals such as plumbers, 
-        electricians, beauticians, and others with customers in need of those services.
-        </p>
-        <Link
-          to='/search'
-          className='text-xs sm:text-sm font-bold hover:underline'>
-          View all Profiles 
-        </Link>
-      </div> */}
+    
       <section >
     <div class="grid max-w-screen-xl px-4 my-0 mx-auto lg:gap-8 xl:gap-20 lg:py-8 lg:grid-cols-12">
         <div class="mr-auto place-self-center lg:col-span-7">
             <h1 class="max-w-3xl mb-6 text-4xl font-extrabold text-white tracking-tight leading-none md:text-5xl xl:text-6xl ">Welcome to City Service</h1>
             <p class="max-w-2xl  mb-2 font-light text-white lg:mb-8 md:text-lg lg:text-xl ">An online platform that connected service professionals such as plumbers, 
         electricians, beauticians, and others with customers in need of those services.</p>
-            {/* <a href="/search" class="inline-flex items-center justify-center px-5 py-3 mr-4 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                Get started
-                <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </a>
-            <a href="/shop" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-teal-500 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                Shop Now
-            </a>  */}
             <MyComponent/>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
