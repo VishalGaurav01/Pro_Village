@@ -1,18 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState,useEffect } from 'react';
-import PostCard from '../components/PostCard';
-// import CalltoAction from '../components/CalltoAction.jsx'
 import CateCards from '../components/CateCards.jsx';
-// import ProductCard from '../components/ProductCard.jsx';
-import Corousal from '../components/Corousal.jsx'
 import { Modal,Button} from 'flowbite-react';
-import Upcoming from '../components/Upcoming.jsx';
-import pagea7 from '../../Photos_coro/pagea7.jpg'
 import CalltoAction from '../components/CalltoAction.jsx'
 import MyComponent from '../components/Buttons.jsx';
-// import Coro2 from '../components/Coro2.jsx';
-// import TextTyping from '../components/Text.jsx';
 export default function Home() {
   const val="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-james-wheeler-414612.jpg&fm=jpg"
 const val1="https://st2.depositphotos.com/1718692/7425/i/450/depositphotos_74257459-stock-photo-lake-near-the-mountain-in.jpg"
@@ -285,11 +277,11 @@ const [posts, setPosts] = useState([]);
 {mode?<div role="status" class=" absolute max-w-sm ml-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)] left-9">
     <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-3 mt-3">
         
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com1.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com2.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com3.webp" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com4.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com5.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/acom1.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/acom2.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/acom3.webp" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/acom4.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/acom5.jpg" alt=""/>
     </div>
     <span class="sr-only">Loading...</span>
 </div>:<></>}
@@ -385,12 +377,6 @@ const [posts, setPosts] = useState([]);
         <div>
             <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele6.jpg" alt=""/>
         </div>
-        {/* <div>
-            <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele7.jpg" alt=""/>
-        </div>
-        <div>
-            <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele8.jpg" alt=""/>
-        </div> */}
         </div>
         </Modal.Body>
       </Modal>
