@@ -51,6 +51,7 @@ export default function Notice() {
   };
   
   const handleSubmit = async () => {
+    setShowAccept(false)
     try {
       if (!currentUser || !currentUser.username || !notificationToDelete) {
         console.error('User data is missing or invalid');

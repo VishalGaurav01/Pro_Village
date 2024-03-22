@@ -125,7 +125,7 @@ export default function CreatePost()
 <div className='p-3 max-w-3xl mx-auto min-h-screen' style={{ zIndex: -1 }}>
     {(!currentUser.isProvider || currentUser.isAdmin || userPosts.length==0)?
           (<>
-            <h1 className='text-center text-3xl my-7 font-semibold' style={{ zIndex: 10 }}>Application Form</h1>
+            <h1 className='m-5 text-center mb-9 text-3xl font-bold tracking-tight leading-none md:text-4xl xl:text-5xl '>Application Form</h1>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
           <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <TextInput

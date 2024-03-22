@@ -213,7 +213,7 @@ export default function Search() {
         const data = await res.json();
         setShops(data.shops);
         setLoading(false);
-        if (data.shops.length === 10) {
+        if (data.shops.length === 9) {
           setShowMore(true);
         } else {
           setShowMore(false);
@@ -260,7 +260,7 @@ export default function Search() {
     if (res.ok) {
       const data = await res.json();
       setShops([...shops, ...data.shops]);
-      if (data.shops.length === 10) {
+      if (data.shops.length === 9) {
         setShowMore(true);
       } else {
         setShowMore(false);
@@ -319,7 +319,7 @@ export default function Search() {
     outline>
     {sidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
   </Button>
-  <span className="flex-grow text-center">Product Section</span>
+  <span className="flex-grow text-center font-bold text-4xl">Product Section</span>
 </h1>
         <div className='p-5 flex flex-wrap gap-5 justify-center'>
           {!loading && shops.length === 0 && <p className='text-xl text-gray-500'>No result found.</p>}

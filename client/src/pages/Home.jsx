@@ -10,6 +10,7 @@ import { Modal,Button} from 'flowbite-react';
 import Upcoming from '../components/Upcoming.jsx';
 import pagea7 from '../../Photos_coro/pagea7.jpg'
 import CalltoAction from '../components/CalltoAction.jsx'
+import MyComponent from '../components/Buttons.jsx';
 // import Coro2 from '../components/Coro2.jsx';
 // import TextTyping from '../components/Text.jsx';
 export default function Home() {
@@ -46,7 +47,7 @@ const [posts, setPosts] = useState([]);
       <Corousal/>
       </div> */}
       <div className='w-full h-full bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]'>
-      <div className=' flex flex-col gap-6 p-20 mb-10  px-3 max-w-6xl mx-auto '>
+      {/* <div className=' flex flex-col gap-6 p-20 mb-10  px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to
         <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg dark:text-white text-gray-700'>
               City
@@ -60,25 +61,70 @@ const [posts, setPosts] = useState([]);
           className='text-xs sm:text-sm font-bold hover:underline'>
           View all Profiles 
         </Link>
-      </div>
+      </div> */}
+      <section >
+    <div class="grid max-w-screen-xl px-4 my-0 mx-auto lg:gap-8 xl:gap-20 lg:py-8 lg:grid-cols-12">
+        <div class="mr-auto place-self-center lg:col-span-7">
+            <h1 class="max-w-3xl mb-6 text-4xl font-extrabold text-white tracking-tight leading-none md:text-5xl xl:text-6xl ">Welcome to City Service</h1>
+            <p class="max-w-2xl  mb-2 font-light text-white lg:mb-8 md:text-lg lg:text-xl ">An online platform that connected service professionals such as plumbers, 
+        electricians, beauticians, and others with customers in need of those services.</p>
+            {/* <a href="/search" class="inline-flex items-center justify-center px-5 py-3 mr-4 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                Get started
+                <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a>
+            <a href="/shop" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-teal-500 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                Shop Now
+            </a>  */}
+            <MyComponent/>
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup"  className="h-80 cursor-pointer hover:scale-105 transition-transform duration-100"/>
+        </div>                
+    </div>
+</section>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
-
+  <div class="flex justify-center items-center h-full">
+    <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Categories to Explore</h5>
+    <div class="grid grid-cols-2 gap-2">
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/mplum.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/melec.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/mcle.jpg" alt=""/>
+  </div>
+  <div className='h-44 overflow-hidden rounded-lg'>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/mmech.jpg" alt=""/>
+  </div>
+</div>
+        <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
+          <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
+        </div>
+    </div>
+</div>
 <div class="flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)]  rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+  <div class="w-full max-w-sm p-4 border bg-gray-100 dark:bg-[rgb(16,23,42)]  rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Keep Searching for</h5>
 
     <div class="grid grid-cols-2 gap-2">
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" 
+    src="../../Photos_coro/abea9.jpg" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" 
+    src="../../Photos_coro/acle7.jpg" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" 
+    src="../../Photos_coro/epro4.jpg" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" 
+    src="../../Photos_coro/acar2.jpg" alt=""/>
   </div>
 </div>
 
@@ -87,70 +133,23 @@ const [posts, setPosts] = useState([]);
     </div>
   </div>
 </div>
-<div class="flex justify-center items-center h-full">
-    <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Categories to Explore</h5>
-        {/* <div class="grid grid-cols-2 gap-2">
-        <div className='h-44'>
-            <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-        </div>
-        <div className='h-44'>
-            <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-        </div>
-        <div className='h-44'>
-            <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-        </div>
-        <div className='h-44'>
-            <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-        </div>
-    </div> */}
+
+<div class="relative flex justify-center items-center h-full">
+  <div class="w-full max-w-sm p-4 border  bg-gray-100 dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+    <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3"> Up to 60% off</h5>
+
     <div class="grid grid-cols-2 gap-2">
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/amech3.webp" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/acle5.jpg" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/acle3.webp" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-  </div>
-</div>
-        <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
-          <a href="/shop" class="text-blue-700 hover:underline dark:text-blue-500">View More</a>
-        </div>
-    </div>
-</div>
-<div class="relative flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
-    <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3"> Up to 60% off</h5>
-    {/* <div class="grid grid-cols-2 gap-2">
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-      </div>
-    </div> */}<div class="grid grid-cols-2 gap-2">
-  <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-  </div>
-  <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-  </div>
-  <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-  </div>
-  <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/aplum2.jpg" alt=""/>
   </div>
 </div>
     <div class="text-sm font-medium text-gray-500 dark:text-gray-300 p-3">
@@ -162,34 +161,21 @@ const [posts, setPosts] = useState([]);
     </div>
 </div>
 <div class="relative flex justify-center items-center h-full">
-  <div class="w-full max-w-sm p-4 border bg-white dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
+  <div class="w-full max-w-sm p-4 border bg-gray-100 dark:bg-[rgb(16,23,42)] border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:border-gray-700">
     <h5 class="text-xl font-medium text-gray-900 dark:text-white pb-3">Deal of the Day</h5>
-    {/* <div class="grid grid-cols-2 gap-2">
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-      </div>
-      <div className='h-44'>
-        <img class="h-full max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-      </div>
-    </div> */}
+
     <div class="grid grid-cols-2 gap-2">
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/acar1.webp" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/abea5.jpg" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/aplum1.jpg" alt=""/>
   </div>
   <div className='h-44 overflow-hidden rounded-lg'>
-    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
+    <img class="h-full max-w-full rounded-lg transform transition-transform hover:scale-105" src="../../Photos_coro/aplum3.jpg" alt=""/>
   </div>
 </div>
     <div class="text-sm font-medium text-gray-500  dark:text-gray-300 p-3">
@@ -203,39 +189,22 @@ const [posts, setPosts] = useState([]);
       </div>
  </div>
 
-  {/* <div className='flex flex-col gap-6 p-20 my-10 px-3 max-w-6xl mx-auto bg-gradient-to-b from-red-300 to-white'>
-  <h1 className='text-3xl font-bold lg:text-6xl'>
-    Welcome to
-    <span className='px-2 ml-1 py-1 lg:text-5xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>
-      Pro
-    </span>Village
-  </h1>
-  <p className='text-gray-500 text-xs sm:text-sm'>
-    Here you'll find a variety of articles and tutorials on topics such as web development, software engineering, and programming languages.
-  </p>
-  <Link to='/search' className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'>
-    View all Profiles
-  </Link>
-</div> */}
-
 <div className='max-w-9xl mx-auto p-3 flex flex-col gap-8 py-10 justify-center items-center'>
   {posts && posts.length > 0 && (
     <div className='flex flex-col gap-6'>
       <h2 className='text-2xl font-semibold text-center hover:text-teal-500'>What are you looking for?</h2>
       <div className='flex flex-wrap mt-2 gap-4 justify-center'>
-      <CateCards url={"../../Photos_coro/plum_img.jpg"} type={"Plumber"} />
-      <CateCards url={"../../Photos_coro/elec_img.jpg"} type={"Electrician"} />
-      <CateCards url={"../../Photos_coro/mech_img.jpg"} type={"Mechanic"} />
-      <CateCards url={"../../Photos_coro/cl_img.jpg"} type={"Cleaner"} />
-      <CateCards url={"../../Photos_coro/car_img.jpg"} type={"Carpenter"} />
-      <CateCards url={"../../Photos_coro/par_img.jpg"} type={"Beautician"} />
+      <CateCards url={"../../Photos_coro/plum_img.jpg"} type={"Plumber"} content={"Plumbers install and repair pipes and fixtures that carry water, gas, or other fluids in homes and businesses"}/>
+      <CateCards url={"../../Photos_coro/elec_img.jpg"} type={"Electrician"} content={"An Electrician is a skilled professional who installs, maintains, and repairs electrical systems in buildings."} />
+      <CateCards url={"../../Photos_coro/mech_img.jpg"} type={"Mechanic"} content={"A mechanic is a person who builds or repairs engines or use special tools and often work in shops or garages"}/>
+      <CateCards url={"../../Photos_coro/cl_img.jpg"} type={"Cleaner"} content={" Cleaners sometimes repair things, and maintain their equipment in good working order, as well as washing."}/>
+      <CateCards url={"../../Photos_coro/car_img.jpg"} type={"Carpenter"} content={"Carpenters are skilled craftsmen who work with wood to construct, install, and repair structures and fixtures."}/>
+      <CateCards url={"../../Photos_coro/par_img.jpg"} type={"Beautician"} content={"A beautician improves the physical looks of customers and helps them feel better about themselves."}/>
       </div>
     </div>
   )}
   </div>
-  {/* https://m.media-amazon.com/images/I/51DWgNo1fdL._SX3000_.jpg */}
   <CalltoAction/>
-  {/* <Coro2 url1="../../Photos_coro/ele1.jpg" url2="../../Photos_coro/ele2.jpg" url3="../../Photos_coro/ele5.jpg" url4="../../Photos_coro/ele5.jpg" url5="../../Photos_coro/ele5.jpg"/> */}
 
 <div className='max-w-9xl mx-5 p-3 flex flex-col gap-4 py-10 mt-4 justify-center items-center'>
   <div className="grid gap-4 max-w-9xl max-h-3xl mx-auto p-3 py-3 justify-center items-center overflow-hidden">
@@ -249,7 +218,6 @@ const [posts, setPosts] = useState([]);
         <div>
             <img className="transition-transform duration-300 transform hover:scale-105 rounded-lg"  style={{ width: '300px', height: '200px', objectFit: 'cover', padding:"2px"}} src="../../Photos_coro/ele1.jpg" alt=""/>
             <h1 className='text-lg justify-center text-center font-semibold line-clamp-2'> Air Conditioner</h1>
-        
         </div>
         <div>
             <img className="transition-transform duration-300 transform hover:scale-105 rounded-lg"  style={{ width: '300px', height: '200px', objectFit: 'cover' , padding:"2px"}} src="../../Photos_coro/ele5.jpg" alt=""/>
@@ -312,20 +280,19 @@ const [posts, setPosts] = useState([]);
     </div>
 </div>
 <h2 className='text-2xl font-semibold text-center mt-10 hover:text-teal-500'>Upcoming Services</h2>
-<div className='flex flex-col justify-center sm:flex-row sm:gap-6 my-6 '>
+<div className='flex flex-col sm:flex-row sm:gap-6 my-6 '>
 
 {mode?<div role="status" class=" absolute max-w-sm ml-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)] left-9">
-    <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-4 mt-3">
+    <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-3 mt-3">
         
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele5.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele3.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele7.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele6.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com1.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com2.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com3.webp" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com4.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/com5.jpg" alt=""/>
     </div>
     <span class="sr-only">Loading...</span>
 </div>:<></>}
-{/* <div className='flex flex-row absolute justify-center' style={{ width: '375px', height: '400px'}}> */}
 <div role="status" className="w-full mr-1 max-w-sm bg-white border  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-gradient-to-b dark:from-[rgb(8,46,77)] to-white from-teal-700 dark:to-[rgb(16,23,42)]">
 <Link onClick={() => {mode?setmode(0):setmode(1)}} className="relative group">
   <div className="relative overflow-hidden group">
@@ -338,9 +305,8 @@ const [posts, setPosts] = useState([]);
   </div>
 </Link>
     <div class="px-5 pb-2">
-        {/* <a href="/Product"> */}
+
             <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white hover:text-teal-500">Computer Repairing</h5>
-        {/* </a> */}
        
         <div class="flex items-center justify-between">
             <p class=" text-gray-900 dark:text-white pt-1">Computer repair workers, also known as computer technicians, are the behind-the-scenes heroes who keep our digital lives running smoothly. </p>
@@ -362,7 +328,7 @@ const [posts, setPosts] = useState([]);
 </Link>
      <div class="px-5 pb-2">
         
-            <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white hover:text-teal-500">Manufacturing Labours</h5>
+            <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white hover:text-teal-500">Construction Labours</h5>
        
         <div class="flex items-center justify-between">
             <p class=" text-gray-900 dark:text-white pt-1">Manufacturing laborers are the backbone of the production process, transforming raw materials into finished goods. </p>
@@ -373,106 +339,21 @@ const [posts, setPosts] = useState([]);
 {(mode1) ? (<div role="status" class=" absolute right-9 max-w-sm mr-2 my-2 p-4 md:flex-1 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-gradient-to-b dark:from-blue-900 to-white from-teal-700 dark:to-[rgb(16,23,42)]">
     <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-4 mt-3">
         
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele5.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele3.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele7.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele6.jpg" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/conc1.png" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/conc2.png" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/conc3.webp" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/conc4.avif" alt=""/>
+            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/conc5.jpg" alt=""/>
     </div>
     <span class="sr-only">Loading...</span>
 </div>):<></>}
 
 </div>
-<Link to='/Project'  className='w-full h-auto '>
+<Link to='/shop'  className='w-full h-auto '>
 <img src="../../Photos_coro/pagea7.jpg" alt="Your Image" className= 'cursor-pointer w-full h-48 object-cover rounded-lg'/>
 </Link>
 </div>
 
-{/* <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center py-3 px-3">
-    <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
-        <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-            <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-        </svg>
-    </div>
-    <div class="w-full">
-        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-    </div>
-    <span class="sr-only">Loading...</span>
-</div> */}
-{/* <h2 className='text-2xl font-semibold text-center hover:text-teal-500'>Upcoming Services</h2>
-
-<div className='flex flex-row justify-center gap-4 my-6 sm:flex sm:flex-wrap sm:justify-center'>
-{mode?<div role="status" class=" max-w-sm ml-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
-    <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-4 mt-3">
-        
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele5.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele3.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele7.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '82px', objectFit: 'cover' }} src="../../Photos_coro/ele6.jpg" alt=""/>
-    </div>
-    <span class="sr-only">Loading...</span>
-</div>:<></>}
-<div role="status" className="w-full mr-1 max-w-sm bg-white border  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-<Link onClick={() => {mode?setmode(0):setmode(1)}} className="relative group">
-  <div className="relative overflow-hidden group">
-    <img
-      className="p-8 rounded-t-lg transition-transform duration-300 transform group-hover:scale-105"
-      src={com}
-      alt="product image"
-      style={{ width: '375px', height: '400px', objectFit: 'cover' }}
-    />
-  </div>
-</Link>
-    <div class="px-5 pb-2">
-            <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white hover:text-teal-500">Computer Repairing</h5>
-       
-        <div class="flex items-center justify-between">
-            <p class=" text-gray-900 dark:text-white pt-1">Computer repair workers, also known as computer technicians, are the behind-the-scenes heroes who keep our digital lives running smoothly. </p>
-        </div>
-    </div>
-    <div className='"pt-16'></div>
-</div>
-
-<div role="status" className="w-full max-w-sm ml-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-<Link onClick={() => {mode1?setmode1(0):setmode1(1)}} className="relative group">
-  <div className="relative overflow-hidden group">
-    <img
-      className="p-8 rounded-t-lg transition-transform duration-300 transform group-hover:scale-105"
-      src={man}
-      alt="product image"
-      style={{ width: '375px', height: '400px', objectFit: 'cover' }}
-    />
-  </div>
-</Link>
-     <div class="px-5 pb-2">
-        
-            <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white hover:text-teal-500">Manufacturing Labours</h5>
-       
-        <div class="flex items-center justify-between">
-            <p class=" text-gray-900 dark:text-white pt-1">Manufacturing laborers are the backbone of the production process, transforming raw materials into finished goods. </p>
-        </div>
-    </div>
-</div>
-
-{(mode1) ? (<div role="status" class=" max-w-sm mr-2 my-2 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
-    <div class="grid grid-rows-1 sm:grid-rows-2 md:grid-rows-3 lg:grid-rows-5 gap-4 mt-3">
-        
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele5.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele3.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele7.jpg" alt=""/>
-            <img className=" rounded-lg"  style={{ width: '250px', height: '80px', objectFit: 'cover' }} src="../../Photos_coro/ele6.jpg" alt=""/>
-    </div>
-    <span class="sr-only">Loading...</span>
-</div>):<></>}
-
-</div> */}
 
 <Modal
         show={modal===1}
@@ -484,9 +365,8 @@ const [posts, setPosts] = useState([]);
 
       </Modal.Header>
         <Modal.Body>
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-3 gap-4">
         <div>
-
             <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele1.jpg" alt=""/>
         </div>
         <div>
@@ -505,12 +385,12 @@ const [posts, setPosts] = useState([]);
         <div>
             <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele6.jpg" alt=""/>
         </div>
-        <div>
+        {/* <div>
             <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele7.jpg" alt=""/>
         </div>
         <div>
             <img className=" rounded-lg"  style={{ width: '150px', height: '100px', objectFit: 'cover' }} src="../../Photos_coro/ele8.jpg" alt=""/>
-        </div>
+        </div> */}
         </div>
         </Modal.Body>
       </Modal>

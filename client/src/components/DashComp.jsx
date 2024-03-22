@@ -8,6 +8,11 @@ import {
 } from 'react-icons/hi';
 import { Button, Table } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import DashChart from './Chart';
+import Chart2 from './Chart2';
+// import TrafficDashboard from './Chart3';
+import TrafficWidget from './Chart3';
+// import Chartdone from './Chart3';
 
 export default function DashComp() {
   const [users, setUsers] = useState([]);
@@ -123,6 +128,14 @@ export default function DashComp() {
           </div>
         </div>
       </div>
+      <div className="grid grid-cols-1 my-4 sm:grid-cols-2 gap-4 px-4">
+  <div className="w-full">
+    <DashChart />
+  </div>
+  <div className="w-full">
+    <Chart2/>
+  </div>
+</div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-3 mx-auto'>
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
@@ -216,31 +229,7 @@ export default function DashComp() {
           </Table>
         </div>
       </div>
+      
     </div>
   );
 }
-        {/* <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
-          <div className='flex justify-between  p-3 text-sm font-semibold'>
-            <h1 className='text-center p-2'>Recent comments</h1>
-            <Button outline gradientDuoTone='purpleToPink'>
-              <Link to={'/dashboard?tab=comments'}>See all</Link>
-            </Button>
-          </div>
-          <Table hoverable>
-            <Table.Head>
-              <Table.HeadCell>Comment content</Table.HeadCell>
-              <Table.HeadCell>Likes</Table.HeadCell>
-            </Table.Head>
-            {comments &&
-              comments.map((comment) => (
-                <Table.Body key={comment._id} className='divide-y'>
-                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                    <Table.Cell className='w-96'>
-                        <p className='line-clamp-2'>{comment.content}</p>
-                    </Table.Cell>
-                    <Table.Cell>{comment.numberOfLikes}</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              ))}
-          </Table>
-        </div> */}

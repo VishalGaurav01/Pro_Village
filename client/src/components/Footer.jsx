@@ -23,7 +23,7 @@ export default function FooterCon() {
               <Footer.Title title='About' />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href='https://portfolio-vis.netlify.app/'
+                  href='https://github.com/VishalGaurav01'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -34,7 +34,7 @@ export default function FooterCon() {
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  Pro Village
+                  City Service
                 </Footer.Link>
               </Footer.LinkGroup>
             </div>

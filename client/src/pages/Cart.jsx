@@ -76,9 +76,9 @@ export default function DashPosts() {
   return (
     <div>
     
-        <h1 className='text-3xl m-5 text-center'>Your Cart</h1>
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
-    <div className='table-auto max-w-3xl pl-5 overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
+        <h1 className='m-5 text-center  mb-6 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl '>Your Cart</h1>
+    <div className='grid grid-cols-1 md:grid-cols-2 items-center '>
+    <div className='table-auto max-w-3xl overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       
       {userShops.length > 0 ? (
         <>
@@ -176,7 +176,7 @@ export default function DashPosts() {
         <p>Total Price: ${sumTotalPrice.toFixed(2)}</p>
       </div> */}
 
-<div class=" mx-auto w-96 h-96 my-auto mb-5 mt-1 items-center max-w-sm p-4  border unded-lg shadow sm:p-8 bg-gray-200 border-gray-400 dark:border-gray-700 dark:bg-gray-800">
+<div class=" mx-auto w-96 h-96 my-auto mb-5 mt-1 items-center max-w-sm p-4  border unded-lg shadow sm:p-8 bg-gray-200 border-gray-400 dark:border-gray-700 dark:bg-gray-800 ">
 <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Quantity: {sumAmount}</h5>
 <div class="flex items-baseline text-gray-900 dark:text-white">
 <span class="text-3xl font-semibold">$ </span>

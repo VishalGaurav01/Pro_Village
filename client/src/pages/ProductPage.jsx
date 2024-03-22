@@ -4,9 +4,8 @@ import { Card } from 'flowbite-react';
 import { useSelector } from 'react-redux';
 import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaCar, FaCheck, FaCheckCircle, FaLock, FaRegCreditCard, FaRetweet, FaShieldAlt } from 'react-icons/fa';
-
 export default function ProductPage() {
     const { shopSlug } = useParams();
     const { currentUser } = useSelector((state) => state.user);
@@ -15,6 +14,8 @@ export default function ProductPage() {
     const [shop, setShop] = useState(null); 
     const [recentShops, setRecentShops] = useState(null);
     const [recent, setrecent]= useState(true);
+    const navigate = useNavigate();
+    const [price, setPrice]=useState("");
     const [images, setImages] = useState({
         img2: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
         img3: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
@@ -42,6 +43,7 @@ export default function ProductPage() {
               setActiveImage(data.shops[0]?.image);
               setLoading(false);
               setError(false);
+              setPrice(data.shops[0].price);
             }
           } catch (error) {
             setError(true);
@@ -217,11 +219,11 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
                         <button className='bg-gray-200 py-1 px-4 rounded-lg text-violet-800 text-3xl' onClick={() => setAmount((prev) => prev + 1)}>+</button>
                     </div>
                     <div className='flex flex-row gap-4 mr-10'>
-                    <Link to='/payment'>
-            <Button gradientDuoTone='purpleToBlue' outline >
-              Buy Now
-            </Button>
-            </Link>
+                    <Button onClick={
+            ()=>{navigate('/payment',{replace: true ,state: { price:price }});}
+          } gradientDuoTone='purpleToBlue' outline>
+            Buy Now
+          </Button>
             <Link to='/cart'>
             <Button gradientDuoTone='purpleToBlue'
             onClick={handleAddToCart}
@@ -230,8 +232,8 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
             </Button>
             </Link>
             </div>
-                </div>
-                <hr className="line" />
+        </div>
+        <hr className="line" />
 
 </div>
             </div>
