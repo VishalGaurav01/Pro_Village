@@ -9,7 +9,7 @@ export default function About() {
 
 <div>
 <div style={{height: "50px"}}>
-<img src='../../Photos_coro/imag.jpg' className='w-full ' style={{height: "550px"}}>
+<img src='https://firebasestorage.googleapis.com/v0/b/learning-803e2.appspot.com/o/images%2Fimag.jpg?alt=media&token=02e5125a-814c-401d-bfe2-ecbb3064bd2b' className='w-full ' style={{height: "550px"}}>
 </img>
 </div>
         <div class="flex justify-center items-center h-full">

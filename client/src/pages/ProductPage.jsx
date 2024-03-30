@@ -205,7 +205,7 @@ Upto ₹750.00 discount on select Credit Cards, Bank…
 </div>
 <hr className="line" />
 
-                {(currentUser.isProvider || currentUser.isAdmin) ? (<div className='flex flex-row'>
+                {(currentUser?.isProvider || currentUser?.isAdmin) ? (<div className='flex flex-row'>
                 <span class="ms-3 text-3xl dark:text-yellow-300 font-medium pr-2 ">${shop && shop.disprice}</span>
                 <span class="text-lg font-medium text-gray-900 line-through dark:text-white"> ${shop && shop.price}</span>
                 

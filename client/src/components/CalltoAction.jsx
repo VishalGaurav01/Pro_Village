@@ -24,7 +24,7 @@ export default function CallToAction() {
         </div>
     </div>
     <div className="p-2 flex-1">
-        <a href='/shop'><img src="../../Photos_coro/pagea7.jpg" className='rounded-lg w-full' alt="product"/></a>
+        <a href='/shop'><img src="https://firebasestorage.googleapis.com/v0/b/learning-803e2.appspot.com/o/images%2Fpagea7.jpg?alt=media&token=ada048a2-e608-40fe-98b7-e49d22b81d57" className='rounded-lg w-full' alt="product"/></a>
     </div>
 </div>
 
