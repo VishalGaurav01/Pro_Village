@@ -22,8 +22,8 @@ const newCart = new Cart({
     res.status(201).json(savedCart); 
   } catch (error) {
     next(error);
-  } 
-
+  }
+  
 };
 
 export const getcarts = async (req, res, next) => {
